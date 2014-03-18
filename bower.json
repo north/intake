@@ -1,0 +1,19 @@
+{
+  "name": "intake",
+  "version": "0.0.0",
+  "homepage": "http://intake.center",
+  "authors": [
+    "Sam Richard <snugug@gmail.com>"
+  ],
+  "description": "Content Strategy intake webapp for use with North",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
