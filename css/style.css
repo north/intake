@@ -1,0 +1,38 @@
+/* line 1, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_kickstart.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 11, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_kickstart.scss */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 5, ../sass/style.scss */
+header {
+  line-height: 1em;
+}
+/* line 13, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_clearfix.scss */
+header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 8, ../sass/style.scss */
+header > h1 {
+  width: 50%;
+  float: left;
+}
+/* line 12, ../sass/style.scss */
+header > h3 {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+/* line 19, ../sass/style.scss */
+main {
+  display: block;
+}

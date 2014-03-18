@@ -1,0 +1,21 @@
+@import "breakpoint";
+@import "toolkit";
+@import "toolkit/kickstart";
+
+header {
+  line-height: 1em;
+  @include clearfix;
+  > h1 {
+    width: 50%;
+    float: left;
+  }
+  > h3 {
+    width: 50%;
+    float: right;
+    text-align: right;
+  }
+}
+
+main {
+  display: block;
+}
