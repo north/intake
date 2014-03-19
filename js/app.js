@@ -30,8 +30,14 @@
   intakeApp.directive('import', function (dataService, localStorageService) {
     return {
       restrict: 'E',
-      template: 'Import: <input type="file" name="import">',
+      template: '<button name="importFileStart">Import</button> <input type="file" id="importFileUpload" name="importFileUpload" style="display: none">',
       link: function (scope, elem) {
+        elem.bind('click', function () {
+          var fileUpload = document.getElementById('importFileUpload');
+          fileUpload.click();
+          // console.log(fileUpload);
+        });
+
         elem.bind('change', function (e) {
           var file = e.target.files[0];
           var reader = new FileReader();
