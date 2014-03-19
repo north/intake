@@ -36,3 +36,8 @@ header > h3 {
 main {
   display: block;
 }
+
+/* line 23, ../sass/style.scss */
+.save {
+  float: right;
+}

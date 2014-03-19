@@ -13,8 +13,10 @@
   <header ng-controller="IntakeHeader">
     <h1><span>Intake</span> <span>Center</span></h1>
     <h3>{{client.name}}</h3>
-    <button ng-click="IntakeDownload()" download="intake.txt">Export</button>
-    <import></import>
+    <div class="save">
+      <button ng-click="IntakeDownload()">Export</button>
+      <import></import>
+    </div>
   </header>
   <main>
 
@@ -23,14 +25,14 @@
       <label>Name:</label>
       <input type="text" ng-model="client.name"  placeholder="Client's Name">
     </div>
-
+<!--
     <div ng-controller="IntakeContentModelCtrl">
       Search: <input type="search" ng-model="query">
       <ul>
         <li ng-repeat="type in types | schemaTypeFilter:query">
           <h4>{{type.label}}</h4>
         </li>
-      </ul>
+      </ul> -->
 
     </div>
   </main>
