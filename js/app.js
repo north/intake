@@ -57,7 +57,7 @@
       var bundle = document.createElement('a');
       var prepare = {'client': $scope.client};
       bundle.href = window.URL.createObjectURL(new Blob([JSON.stringify(prepare)], { type: 'text/plain'}));
-      bundle.download = $scope.client.name.slugify() + '--intake.txt';
+      bundle.download = $scope.client.name.slugify() + '.intake';
 
       document.body.appendChild(bundle);
       bundle.click();
