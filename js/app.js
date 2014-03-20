@@ -61,9 +61,10 @@
 
     $scope.IntakeDownload = function () {
       var bundle = document.createElement('a');
+      var filename = $scope.client.name.slugify() || 'export';
       var prepare = {'client': $scope.client};
       bundle.href = window.URL.createObjectURL(new Blob([JSON.stringify(prepare)], { type: 'text/plain'}));
-      bundle.download = $scope.client.name.slugify() + '.intake';
+      bundle.download = filename + '.intake';
 
       document.body.appendChild(bundle);
       bundle.click();
