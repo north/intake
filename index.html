@@ -12,7 +12,7 @@
 <body>
   <header ng-controller="IntakeHeader">
     <h1><span>Intake</span> <span>Center</span></h1>
-    <h3>{{client.name}}</h3>
+    <h3>{{client.name || '&nbsp'}}</h3>
     <div class="save">
       <button ng-click="IntakeDownload()">Export</button>
       <import></import>
