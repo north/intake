@@ -12,7 +12,8 @@ img, video {
 
 /* line 7, ../sass/style.scss */
 html {
-  font-family: sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 300;
   font-size: 1em;
   line-height: 1.618em;
 }
@@ -35,68 +36,69 @@ html {
   }
 }
 
-/* line 22, ../sass/style.scss */
+/* line 23, ../sass/style.scss */
 body > footer {
   clear: both;
 }
 
-/* line 26, ../sass/style.scss */
+/* line 27, ../sass/style.scss */
 .roles {
   list-style-type: none;
 }
 
-/* line 31, ../sass/style.scss */
+/* line 32, ../sass/style.scss */
 .roles--display > span {
   display: inline-block;
   float: left;
 }
-/* line 35, ../sass/style.scss */
+/* line 36, ../sass/style.scss */
 .roles--display > span:nth-child(4) {
   display: inline-block;
   float: left;
   clear: both;
 }
 
-/* line 42, ../sass/style.scss */
+/* line 43, ../sass/style.scss */
 ._main {
   max-width: 1024px;
   margin: 0 auto;
 }
 
 @media (min-width: 692px) {
-  /* line 47, ../sass/style.scss */
+  /* line 48, ../sass/style.scss */
   ._main--primary {
     width: 60%;
     float: left;
   }
 }
 @media (min-width: 951px) {
-  /* line 47, ../sass/style.scss */
+  /* line 48, ../sass/style.scss */
   ._main--primary {
     width: 61.8047%;
   }
 }
 
 @media (min-width: 692px) {
-  /* line 58, ../sass/style.scss */
+  /* line 59, ../sass/style.scss */
   .main--secondary {
     width: 40%;
     float: right;
   }
 }
 @media (min-width: 951px) {
-  /* line 58, ../sass/style.scss */
+  /* line 59, ../sass/style.scss */
   .main--secondary {
     width: 38.1953%;
   }
 }
 
-/* line 69, ../sass/style.scss */
+/* line 70, ../sass/style.scss */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1em;
+  font-weight: 500;
 }
 
-/* line 73, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
 header {
   line-height: 1em;
 }
@@ -106,29 +108,29 @@ header:after {
   display: table;
   clear: both;
 }
-/* line 76, ../sass/style.scss */
+/* line 78, ../sass/style.scss */
 header > h1 {
   width: 50%;
   float: left;
 }
-/* line 80, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 header > h3 {
   width: 50%;
   float: right;
   text-align: right;
 }
 
-/* line 87, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 main {
   display: block;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 .save {
   float: right;
 }
 
-/* line 95, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 input[ng-model="project.name"] {
   width: 100%;
   font-size: 1.5em;
