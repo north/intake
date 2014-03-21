@@ -38,7 +38,7 @@
   intakeDirectives.directive('imagedrop', function () {
     return {
       restrict: 'E',
-      template: '<div id="drop_zone" style="height: 200px; width: 200px; border: 1px solid grey; background-size: 100%">Drop Image Here</div>',
+      template: '<div id="drop_zone" style="height: 200px; width: 200px; border: 1px solid grey; background-size: 100%; background-repeat: no-repeat; background-position: 50% 50%;">Drop Image Here</div>',
       link: function (scope) {
         var opts = {
           readAsMap: {
