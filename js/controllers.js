@@ -161,7 +161,12 @@
     }
   });
 
-  intakeControllers.controller('IntakePersonasCtrl', function () {
+  intakeControllers.controller('IntakePersonasCtrl', function ($scope) {
+    $scope.image = '';
+    $scope.updateImage = function (image) {
+      $scope.image = image;
+      console.log($scope.image);
+    };
   });
 
 })(window.angular);

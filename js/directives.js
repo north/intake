@@ -48,10 +48,7 @@
             loadend: function (e) {
               var dropZone = document.getElementById('drop_zone');
               dropZone.style.backgroundImage = 'url(' + e.target.result + ')';
-              scope.image = e.target.result;
-
-              console.log(scope);
-              // document.getElementById('drop_image').src = e.target.result;
+              scope.updateImage(e.target.result);
             }
           }
         };
