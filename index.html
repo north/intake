@@ -5,37 +5,30 @@
   <title>Intake</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
 
+  <script src="js/controllers.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/filters.js"></script>
   <script src="js/app.js"></script>
 </head>
 <body>
-  <header ng-controller="IntakeHeader">
-    <h1><span>Intake</span> <span>Center</span></h1>
-    <h3>{{client.name || '&nbsp'}}</h3>
+  <header ng-controller="IntakeHeaderCtrl">
+    <h1><a href="/"><span>Intake</span> <span>Center</span></a></h1>
+    <h3>{{project.name || '&nbsp'}}</h3>
     <div class="save">
       <button ng-click="IntakeDownload()">Export</button>
       <import></import>
     </div>
+    <nav role="navigation">
+      <a href="#/roles">Roles</a>
+      <a href="#/vision">Vision</a>
+      <a href="#/personas">Personas</a>
+      <a href="#/schema">Schema</a>
+    </nav>
   </header>
-  <main>
-
-
-    <div ng-controller="IntakeClientName">
-      <label>Name:</label>
-      <input type="text" ng-model="client.name"  placeholder="Client's Name">
-    </div>
-<!--
-    <div ng-controller="IntakeContentModelCtrl">
-      Search: <input type="search" ng-model="query">
-      <ul>
-        <li ng-repeat="type in types | schemaTypeFilter:query">
-          <h4>{{type.label}}</h4>
-        </li>
-      </ul> -->
-
-    </div>
-  </main>
+  <main ng-view class="_main"></main>
 
 
   <footer>

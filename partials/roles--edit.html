@@ -1,0 +1,39 @@
+<form name="rolesEdit">
+  <div>
+    <label>Role</label>
+    <input type="text" name="role" ng-model="role.role" required>
+    <span ng-show="rolesEdit.role.$error.required && !rolesEdit.role.$pristine">
+        Required {{rolesEdit.role.$pristine}}</span>
+  </div>
+
+  <div>
+    <label>Name</label>
+    <input type="text" name="name" ng-model="role.name" required>
+    <span ng-show="rolesEdit.name.$error.required && !rolesEdit.name.$pristine">
+        Required {{rolesEdit.name.$pristine}}</span>
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" name="email" ng-model="role.email" required>
+    <span ng-show="rolesEdit.email.$error.required && !rolesEdit.email.$pristine">
+        Required {{rolesEdit.email.$pristine}}</span>
+        <span ng-show="rolesEdit.email.$error.email && !rolesEdit.email.$pristine">
+        Valid email required {{rolesEdit.email.$pristine}}</span>
+  </div>
+
+  <div>
+    <label>Description</label>
+    <input type="text" name="description" ng-model="role.description" required>
+    <span ng-show="rolesEdit.description.$error.required && !rolesEdit.description.$pristine">
+        Required {{rolesEdit.description.$pristine}}</span>
+  </div>
+
+  <div>
+    <a href="#/roles">Cancel</a>
+    <button ng-click="save()" ng-disabled="rolesEdit.$invalid">Save</button>
+    <button ng-click="destroy()"
+          ng-show="remove">Delete</button>
+  </div>
+
+</form>

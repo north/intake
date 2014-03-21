@@ -1,0 +1,11 @@
+<a href="#/roles/new">Add New Role</a>
+<input type="search" ng-model="search" placeholder="Search">
+<ul class="roles">
+  <li class="roles--display" ng-repeat="role in project.roles | filter:search">
+    <span>{{role.role}}</span>
+    <span>{{role.name}}</span>
+    <span><a href="mailto:{{role.email}}">Email</a></span>
+    <span>{{role.description}}</span>
+    <span><a href="#/roles/edit/{{role.guid}}">Edit</a></span>
+  </li>
+</ul>

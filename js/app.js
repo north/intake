@@ -1,7 +1,57 @@
 (function (angular) {
   'use strict';
 
-  var intakeApp = angular.module('intakeApp', ['LocalStorageModule']);
+  var intakeApp = angular.module('intakeApp', [
+    'ngRoute',
+    'intakeControllers',
+    'intakeDirectives',
+    'intakeFilters'
+  ]);
+
+  intakeApp.config(['$routeProvider',
+    function ($routeProvider) {
+      $routeProvider
+        .when('/', {
+          templateUrl: 'partials/root.html',
+          controller: 'IntakeRootCtrl'
+        })
+        .when('/roles', {
+          templateUrl: 'partials/roles.html',
+          controller: 'IntakeRolesCtrl'
+        })
+        .when('/roles/new', {
+          templateUrl: 'partials/roles--edit.html',
+          controller: 'IntakeRoleNewCtrl'
+        })
+        .when('/roles/edit/:roleId', {
+          templateUrl: 'partials/roles--edit.html',
+          controller: 'IntakeRoleEditCtrl'
+        })
+        .when('/vision', {
+          templateUrl: 'partials/vision.html',
+          controller: 'IntakeVisionCtrl'
+        })
+        .when('/schema', {
+          templateUrl: 'partials/schema.html',
+          controller: 'IntakeContentModelCtrl'
+        })
+        .when('/personas', {
+          templateUrl: 'partials/personas.html',
+          controller: 'IntakePersonasCtrl'
+        })
+        .when('/personas/new', {
+          templateUrl: 'partials/personas.html',
+          controller: 'IntakePersonasCtrl'
+        })
+        .when('/personas/edit:personaId0', {
+          templateUrl: 'partials/personas.html',
+          controller: 'IntakePersonasCtrl'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    }
+  ]);
 
   if (!String.prototype.contains) {
     String.prototype.contains = function () {
@@ -14,116 +64,5 @@
       return this.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
     };
   }
-
-  intakeApp.factory('dataService', function (localStorageService) {
-    var client = localStorageService.get('client') || {};
-    return {
-      getClient: function () {
-        return client;
-      },
-      setClient: function (value) {
-        client = value;
-      }
-    };
-  });
-
-  intakeApp.directive('import', function (dataService, localStorageService) {
-    return {
-      restrict: 'E',
-      template: '<button name="importFileStart">Import</button> <input type="file" id="importFileUpload" name="importFileUpload" style="display: none">',
-      link: function (scope, elem) {
-        elem.bind('click', function () {
-          var fileUpload = document.getElementById('importFileUpload');
-          fileUpload.click();
-          // console.log(fileUpload);
-        });
-
-        elem.bind('change', function (e) {
-          var file = e.target.files[0];
-          var reader = new FileReader();
-
-          reader.onloadend = function (evt) {
-            var importData = JSON.parse(evt.target.result);
-
-            localStorageService.add('client', importData.client);
-            location.reload(true);
-          };
-
-          reader.readAsText(file);
-        });
-      }
-    };
-  });
-
-  intakeApp.controller('IntakeHeader', function ($scope, dataService) {
-    $scope.client = dataService.getClient();
-    console.log();
-
-    $scope.IntakeDownload = function () {
-      var bundle = document.createElement('a');
-      var filename = $scope.client.name.slugify() || 'export';
-      var prepare = {'client': $scope.client};
-      bundle.href = window.URL.createObjectURL(new Blob([JSON.stringify(prepare)], { type: 'text/plain'}));
-      bundle.download = filename + '.intake';
-
-      document.body.appendChild(bundle);
-      bundle.click();
-      document.body.removeChild(bundle);
-    };
-  });
-
-  intakeApp.controller('IntakeClientName', function ($scope, dataService, localStorageService) {
-    $scope.client = dataService.getClient();
-
-    // Save Client info when client.name changes
-    $scope.$watch('client.name', function () {
-      localStorageService.add('client', $scope.client);
-    });
-  });
-
-  intakeApp.filter('schemaTypeFilter', function () {
-    return function (input, filterKey) {
-      var filteredInput = {};
-
-      if (filterKey === undefined) {
-        return input;
-      }
-
-      var searchKeys = filterKey;
-      if (typeof(searchKeys) === 'object') {
-        searchKeys = Object.keys(searchKeys);
-      }
-
-      angular.forEach(input, function (value, key) {
-        if (typeof(searchKeys) === 'string') {
-          if (value.label && value.label.toLowerCase().contains(filterKey.toLowerCase())) {
-            filteredInput[key] = value;
-          }
-        }
-      });
-      return filteredInput;
-    };
-  });
-
-  intakeApp.controller('IntakeContentModelCtrl', function ($scope, $http, localStorageService) {
-
-    function setScope(schema) {
-      $scope.dataTypes = schema.datatypes;
-      $scope.properties = schema.properties;
-      $scope.types = schema.types;
-    }
-
-    var schema = localStorageService.get('schema');
-    if (!schema) {
-      $http.get('data/all.json').success(function (schema) {
-        localStorageService.add('schema', schema);
-        setScope(schema);
-      });
-    }
-    else {
-      setScope(schema);
-    }
-  });
-
 
 })(window.angular);
