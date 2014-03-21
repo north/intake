@@ -1,7 +1,7 @@
 <a href="#/roles/new">Add New Role</a>
 <input type="search" ng-model="search" placeholder="Search">
 <ul class="roles">
-  <li class="roles--display" ng-repeat="role in project.roles | filter:search">
+  <li class="roles--display" ng-repeat="role in project.roles | filter:search | orderBy:'name'">
     <span>{{role.role}}</span>
     <span>{{role.name}}</span>
     <span><a href="mailto:{{role.email}}">Email</a></span>
