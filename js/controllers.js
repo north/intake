@@ -161,14 +161,7 @@
     }
   });
 
-  intakeControllers.controller('IntakePersonasCtrl', function ($scope) {
-    $scope.personas = [{
-      'name': 'Sam'
-    },
-    {
-      'name': 'Mason'
-    }];
-
+  intakeControllers.controller('IntakePersonasCtrl', function () {
   });
 
 })(window.angular);
