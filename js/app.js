@@ -39,6 +39,10 @@
           templateUrl: 'partials/personas.html',
           controller: 'IntakePersonasCtrl'
         })
+        .when('/personas/new', {
+          templateUrl: 'partials/personas--edit.html',
+          controller: 'IntakePersonasCtrl'
+        })
         .otherwise({
           redirectTo: '/'
         });

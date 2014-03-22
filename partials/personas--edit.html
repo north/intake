@@ -1,0 +1,39 @@
+<form name="personaEdit">
+  <imagedrop></imagedrop>
+
+  <div>
+    <label>Name</label>
+    <input type="text" name="name" ng-model="persona.name" required>
+    <span ng-show="personaEdit.name.$error.required && !personaEdit.name.$pristine">
+        Required {{personaEdit.name.$pristine}}</span>
+  </div>
+
+  <div>
+    <label>Typical Use</label>
+    <textarea name="typical-use" ng-model="persona.typical-use" required></textarea>
+    <span ng-show="personaEdit.typical-use.$error.required && !personaEdit.typical-use.$pristine">
+        Required {{personaEdit.typical-use.$pristine}}</span>
+  </div>
+
+  <div>
+    <label>Motivator for Use</label>
+    <textarea name="motivator" ng-model="persona.motivator" required></textarea>
+    <span ng-show="personaEdit.motivator.$error.required && !personaEdit.motivator.$pristine">
+        Required {{personaEdit.motivator.$pristine}}</span>
+  </div>
+
+  <div>
+    <label>Pain Points</label>
+    <textarea name="pain-points" ng-model="persona.pain-points" required></textarea>
+    <span ng-show="personaEdit.pain-points.$error.required && !personaEdit.pain-points.$pristine">
+        Required {{personaEdit.pain-points.$pristine}}</span>
+  </div>
+
+  <div>
+    <a href="#/personas">Cancel</a>
+    <button ng-click="save()" ng-disabled="personaEdit.$invalid">Save</button>
+    <button ng-click="destroy()"
+          ng-show="remove">Delete</button>
+  </div>
+
+</form>
