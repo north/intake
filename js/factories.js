@@ -40,16 +40,19 @@
 
   intakeFactories.factory('guidService', function () {
     return {
-      addGuid: function (item) {
+      add: function (item) {
         item.guid = guid();
         return item;
       },
       find: function (items, guid) {
+        var elem = {};
         items.forEach(function (element) {
           if (element.guid === guid) {
-            return element;
+            elem = element;
+            return;
           }
         });
+        return elem;
       },
       remove: function (items, guid) {
         var itemHold = [];
