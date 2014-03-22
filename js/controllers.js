@@ -1,42 +1,12 @@
 (function (angular) {
   'use strict';
 
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-             .toString(16)
-             .substring(1);
-  }
 
-  function guid() {
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-           s4() + '-' + s4() + s4() + s4();
-  }
 
   var intakeControllers = angular.module('intakeControllers', [
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'intakeFactories'
   ]);
-
-  intakeControllers.factory('dataService', function (localStorageService) {
-    var project = localStorageService.get('project') || {};
-    var vision = localStorageService.get('vision') || {};
-    var personas = localStorageService.get('personas') || {};
-
-    return {
-      getProject: function () {
-        return project;
-      },
-      getVision: function () {
-        return vision;
-      },
-      getPersonas: function () {
-        return personas;
-      },
-      addRole: function (value) {
-        project.roles = project.roles || [];
-        project.roles.push(value);
-      }
-    };
-  });
 
   intakeControllers.controller('IntakeHeaderCtrl', function ($scope, dataService) {
     $scope.project = dataService.getProject();
@@ -71,12 +41,11 @@
     $scope.project = dataService.getProject();
   });
 
-  intakeControllers.controller('IntakeRoleNewCtrl', function ($scope, $location, $timeout, dataService, localStorageService) {
+  intakeControllers.controller('IntakeRoleNewCtrl', function ($scope, $location, $timeout, dataService, guidService, localStorageService) {
     $scope.project = dataService.getProject();
     $scope.save = function () {
       var role = $scope.role;
-      role.guid = guid();
-      console.log(role);
+      role = guidService.add(role);
       dataService.addRole($scope.role);
       localStorageService.add('project', $scope.project);
       $timeout(function () {
@@ -85,47 +54,28 @@
     };
   });
 
-  intakeControllers.controller('IntakeRoleEditCtrl', function ($scope, $location, $timeout, $routeParams, dataService, localStorageService) {
+  intakeControllers.controller('IntakeRoleEditCtrl', function ($scope, $location, $timeout, $routeParams, dataService, guidService, localStorageService) {
     $scope.project = dataService.getProject();
     $scope.role = {};
     $scope.remove = true;
     var roleId = $routeParams.roleId;
 
     // Set Current Scope for Role
-    $scope.project.roles.forEach(function (element) {
-      if (element.guid === roleId) {
-        $scope.role = element;
-        return;
-      }
-    });
+    $scope.role = guidService.find($scope.project.roles, roleId);
+    console.log($scope.role);
 
     // Destroy a Role
     $scope.destroy = function () {
-      var rolesHold = [];
-      $scope.project.roles.forEach(function (element) {
-        if (element.guid !== roleId) {
-          rolesHold.push(element);
-        }
-      });
-      $scope.project.roles = rolesHold;
+      $scope.project.roles = guidService.remove($scope.project.roles, roleId);
       localStorageService.add('project', $scope.project);
       $timeout(function () {
         $location.path('/roles');
       });
     };
 
-    // Save Changes to a Role
+    // Update a Role
     $scope.save = function () {
-      var rolesHold = [];
-      $scope.project.roles.forEach(function (element) {
-        if (element.guid === roleId) {
-          rolesHold.push($scope.role);
-        }
-        else {
-          rolesHold.push(element);
-        }
-      });
-      $scope.project.roles = rolesHold;
+      $scope.project.roles = guidService.update($scope.project.roles, roleId, $scope.role);
       localStorageService.add('project', $scope.project);
       $timeout(function () {
         $location.path('/roles');
