@@ -62,6 +62,10 @@
     // Set Current Scope for Role
     $scope.item = dataService.find(path);
 
+    if ($scope.item.image) {
+      $scope.image = $scope.item.image;
+    }
+
     $scope.updateImage = function (image) {
       $scope.image = image;
     };

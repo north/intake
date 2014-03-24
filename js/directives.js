@@ -38,13 +38,17 @@
       restrict: 'E',
       template: '<div id="drop_zone" style="height: 200px; width: 200px; border: 1px solid grey; background-size: 100%; background-repeat: no-repeat; background-position: 50% 50%;">Drop Image Here</div>',
       link: function (scope) {
+        var dropZone = document.getElementById('drop_zone');
+        if (scope.image) {
+          dropZone.style.backgroundImage = 'url(' + scope.image + ')';
+        }
         var opts = {
           readAsMap: {
             'image/*': 'DataURL'
           },
           on: {
             loadend: function (e) {
-              var dropZone = document.getElementById('drop_zone');
+
               dropZone.style.backgroundImage = 'url(' + e.target.result + ')';
               scope.updateImage(e.target.result);
             }
