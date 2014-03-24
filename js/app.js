@@ -34,9 +34,17 @@
           templateUrl: 'partials/vision.html',
           controller: 'IntakeVisionCtrl'
         })
-        .when('/schema', {
+        .when('/content-models', {
           templateUrl: 'partials/schema.html',
           controller: 'IntakeContentModelCtrl'
+        })
+        .when('/content-models/new', {
+          templateUrl: 'partials/schema--select.html',
+          controller: 'IntakeContentModelCtrl'
+        })
+        .when('/content-models/new/:type', {
+          templateUrl: 'partials/schema--edit.html',
+          controller: 'IntakeContentModelNewCtrl'
         })
         .when('/personas', {
           templateUrl: 'partials/personas.html',
