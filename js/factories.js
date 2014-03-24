@@ -16,9 +16,9 @@
     'LocalStorageModule'
   ]);
 
-  intakeFactories.factory('dataService', function ($location, $routeParams, localStorageService) {
+  intakeFactories.factory('dataService', function ($location, $routeParams, $http, localStorageService) {
     var project = localStorageService.get('project') || {};
-    var vision = localStorageService.get('vision') || {};
+    var schema = localStorageService.get('schema');
 
     return {
       get: function (key) {
@@ -29,8 +29,32 @@
           return project[key];
         }
       },
-      getVision: function () {
-        return vision;
+      getSchema: function (key) {
+        if (!schema) {
+          $http.get('data/all.json').success(function (external) {
+            localStorageService.add('schema', external);
+            schema = external;
+            if (key) {
+              return schema[key];
+            }
+            else {
+              return schema;
+            }
+
+          });
+        }
+        else {
+          if (key) {
+            return schema[key];
+          }
+          else {
+            return schema;
+          }
+
+        }
+      },
+      refresh: function () {
+        localStorageService.add('project', project);
       },
       find: function (key, guid) {
         var search = project[key];

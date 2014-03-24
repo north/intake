@@ -1,23 +1,19 @@
 (function (angular) {
   'use strict';
 
-
-
   var intakeControllers = angular.module('intakeControllers', [
-    'LocalStorageModule',
     'intakeFactories'
   ]);
 
   intakeControllers.controller('IntakeHeaderCtrl', function ($scope, dataService) {
     $scope.project = dataService.get();
-    $scope.vision = dataService.getVision();
     // $scope.personas = dataService.getPersonas();
 
     $scope.IntakeDownload = function () {
       var bundle = document.createElement('a');
       var filename = $scope.project.name.slugify() || 'export';
 
-      var prepare = {'project': $scope.project, 'vision': $scope.vision};
+      var prepare = {'project': $scope.project};
 
       bundle.href = window.URL.createObjectURL(new Blob([JSON.stringify(prepare)], { type: 'text/plain'}));
       bundle.download = filename + '.intake';
@@ -28,12 +24,12 @@
     };
   });
 
-  intakeControllers.controller('IntakeRootCtrl', function ($scope, dataService, localStorageService) {
+  intakeControllers.controller('IntakeRootCtrl', function ($scope, dataService) {
     $scope.project = dataService.get();
 
     // Save Client info when client.name changes
     $scope.$watch('project.name', function () {
-      localStorageService.add('project', $scope.project);
+      dataService.refresh();
     });
   });
 
@@ -67,39 +63,26 @@
     };
   });
 
-  intakeControllers.controller('IntakeVisionCtrl', function ($scope, dataService, localStorageService) {
-    $scope.vision = dataService.get('vision');
+  intakeControllers.controller('IntakeVisionCtrl', function ($scope, dataService) {
+    $scope.project = dataService.get();
 
     // Save Client info when client.name changes
-    $scope.$watch('vision.statement', function () {
-      localStorageService.add('vision', $scope.vision);
+    $scope.$watch('project.vision', function () {
+      dataService.refresh();
     });
   });
 
-  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, $http, localStorageService) {
-    function setScope(schema) {
-      $scope.dataTypes = schema.datatypes;
-      $scope.properties = schema.properties;
-      $scope.types = schema.types;
-    }
-
-    var schema = localStorageService.get('schema');
-    if (!schema) {
-      $http.get('data/all.json').success(function (schema) {
-        localStorageService.add('schema', schema);
-        setScope(schema);
-      });
-    }
-    else {
-      setScope(schema);
-    }
+  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, dataService) {
+    $scope.datatypes = dataService.getSchema('datatypes');
+    $scope.properties = dataService.getSchema('properties');
+    $scope.types = dataService.getSchema('types');
   });
 
   intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
     $scope.personas = dataService.get('personas');
   });
 
-  intakeControllers.controller('IntakePersonasNewCtrl', function ($scope, $location, $timeout, dataService) {
+  intakeControllers.controller('IntakePersonasNewCtrl', function ($scope, dataService) {
     $scope.personas = dataService.get('personas');
 
     $scope.updateImage = function (image) {
@@ -112,9 +95,6 @@
         persona.image = $scope.image;
       }
       dataService.add('personas', $scope.persona);
-      $timeout(function () {
-        $location.path('/personas');
-      });
     };
   });
 
