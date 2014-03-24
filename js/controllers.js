@@ -11,13 +11,13 @@
   intakeControllers.controller('IntakeHeaderCtrl', function ($scope, dataService) {
     $scope.project = dataService.getProject();
     $scope.vision = dataService.getVision();
-    $scope.personas = dataService.getPersonas();
+    // $scope.personas = dataService.getPersonas();
 
     $scope.IntakeDownload = function () {
       var bundle = document.createElement('a');
       var filename = $scope.project.name.slugify() || 'export';
 
-      var prepare = {'project': $scope.project, 'vision': $scope.vision, 'personas': $scope.personas};
+      var prepare = {'project': $scope.project, 'vision': $scope.vision};
 
       bundle.href = window.URL.createObjectURL(new Blob([JSON.stringify(prepare)], { type: 'text/plain'}));
       bundle.download = filename + '.intake';
@@ -111,11 +111,26 @@
     }
   });
 
-  intakeControllers.controller('IntakePersonasCtrl', function ($scope) {
-    $scope.image = '';
+  intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
+    $scope.personas = dataService.getProject().personas;
+  });
+
+  intakeControllers.controller('IntakePersonasNewCtrl', function ($scope, $location, $timeout, dataService) {
+    $scope.personas = dataService.getProject().personas;
+
     $scope.updateImage = function (image) {
       $scope.image = image;
-      console.log($scope.image);
+    };
+
+    $scope.save = function () {
+      var persona = $scope.persona;
+      if ($scope.image) {
+        persona.image = $scope.image;
+      }
+      dataService.addItem('personas', $scope.persona);
+      $timeout(function () {
+        $location.path('/personas');
+      });
     };
   });
 
