@@ -1,0 +1,24 @@
+<h2>New {{type.label}}</h2>
+<form name="schemaEdit">
+
+  <div>
+    <h3>Attributes</h3>
+    <input type="search" ng-model="search.attributes" placeholder="Search">
+    <ul>
+      <li ng-repeat="property in properties | filter:search.attributes | orderBy:'label'">
+        <input type="checkbox" name="{{property.id}}" id="{{property.id}}">
+        <label for="{{property.id}}">{{property.label}}</label><br>
+        <small ng-bind-html="property.desc"></small>
+      </li>
+    </ul>
+  </div>
+
+
+  <div>
+    <a href="#/schemaEdits">Cancel</a>
+    <button ng-click="save()" ng-disabled="schemaEdit.$invalid">Save</button>
+    <button ng-click="destroy()"
+          ng-show="remove">Delete</button>
+  </div>
+
+</form>
