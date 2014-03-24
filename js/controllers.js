@@ -11,7 +11,7 @@
 
     $scope.IntakeDownload = function () {
       var bundle = document.createElement('a');
-      var filename = $scope.project.name.slugify() || 'export';
+      var filename = $scope.project.name === undefined ? 'export' : $scope.project.name.slugify();
 
       var prepare = {'project': $scope.project};
 
@@ -93,10 +93,12 @@
     });
   });
 
-  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, dataService) {
-    $scope.datatypes = dataService.getSchema('datatypes');
-    $scope.properties = dataService.getSchema('properties');
-    $scope.types = dataService.getSchema('types');
+  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, $timeout, dataService) {
+    dataService.getSchema().then(function (schema) {
+      $scope.datatypes = schema.datatypes;
+      $scope.properties = schema.properties;
+      $scope.types = schema.types;
+    });
   });
 
   intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
