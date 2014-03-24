@@ -24,6 +24,9 @@
     };
   });
 
+  //////////////////////////////
+  // Basic Controllers
+  //////////////////////////////
   intakeControllers.controller('IntakeRootCtrl', function ($scope, dataService) {
     $scope.project = dataService.get();
 
@@ -37,6 +40,22 @@
     $scope.project = dataService.get();
   });
 
+  intakeControllers.controller('IntakeVisionCtrl', function ($scope, dataService) {
+    $scope.project = dataService.get();
+
+    // Save Client info when client.name changes
+    $scope.$watch('project.vision', function () {
+      dataService.refresh();
+    });
+  });
+
+  intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
+    $scope.personas = dataService.get('personas');
+  });
+
+  //////////////////////////////
+  // Form Controllers
+  //////////////////////////////
   intakeControllers.controller('IntakeFormNewCtrl', function ($scope, $location, dataService) {
     $scope.project = dataService.get();
     var path = $location.path().split('/')[1];
@@ -84,25 +103,42 @@
     };
   });
 
-  intakeControllers.controller('IntakeVisionCtrl', function ($scope, dataService) {
-    $scope.project = dataService.get();
+  //////////////////////////////
+  // Content Model Controllers;
+  //////////////////////////////
+  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, $timeout, schemaService) {
+    var parents = function (input) {
+      var filtered = {};
+      angular.forEach(input, function (value, key) {
+        if (value.ancestors.length === 1 && value.subtypes.length > 0) {
+          filtered[key] = value;
+        }
+        if (value.ancestors.length === 0) {
+          filtered[key] = value;
+        }
+      });
+      return filtered;
+    };
 
-    // Save Client info when client.name changes
-    $scope.$watch('project.vision', function () {
-      dataService.refresh();
-    });
-  });
-
-  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, $timeout, dataService) {
-    dataService.getSchema().then(function (schema) {
-      $scope.datatypes = schema.datatypes;
-      $scope.properties = schema.properties;
+    schemaService.get().then(function (schema) {
+      // $scope.datatypes = schema.datatypes;
+      // $scope.properties = schema.properties;
       $scope.types = schema.types;
+
+      $scope.search = {};
+      $scope.parents = parents($scope.types);
+      $scope.search.subtype = Object.keys($scope.parents)[0];
     });
   });
 
-  intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
-    $scope.personas = dataService.get('personas');
+  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, schemaService) {
+    schemaService.get().then(function () {
+      $scope.type = schemaService.type();
+      $scope.properties = schemaService.properties();
+      $scope.search = {};
+    });
   });
+
+
 
 })(window.angular);
