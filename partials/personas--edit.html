@@ -3,28 +3,28 @@
 
   <div>
     <label>Name</label>
-    <input type="text" name="name" ng-model="persona.name" required>
+    <input type="text" name="name" ng-model="item.name" required>
     <span ng-show="personaEdit.name.$error.required && !personaEdit.name.$pristine">
         Required {{personaEdit.name.$pristine}}</span>
   </div>
 
   <div>
     <label>Typical Use</label>
-    <textarea type="text" name="uses" ng-model="persona.uses" required></textarea>
+    <textarea type="text" name="uses" ng-model="item.uses" required></textarea>
     <span ng-show="personaEdit.uses.$error.required && !personaEdit.uses.$pristine">
         Required {{personaEdit.uses.$pristine}}</span>
   </div>
 
   <div>
     <label>Motivator for Use</label>
-    <textarea name="motivator" ng-model="persona.motivator" required></textarea>
+    <textarea name="motivator" ng-model="item.motivator" required></textarea>
     <span ng-show="personaEdit.motivator.$error.required && !personaEdit.motivator.$pristine">
         Required {{personaEdit.motivator.$pristine}}</span>
   </div>
 
   <div>
     <label>Pain Points</label>
-    <textarea name="pains" ng-model="persona.pains" required></textarea>
+    <textarea name="pains" ng-model="item.pains" required></textarea>
     <span ng-show="personaEdit.pains.$error.required && !personaEdit.pains.$pristine">
         Required {{personaEdit.pains.$pristine}}</span>
   </div>

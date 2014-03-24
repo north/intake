@@ -21,14 +21,14 @@
         })
         .when('/roles/new', {
           templateUrl: 'partials/roles--edit.html',
-          controller: 'IntakeRoleNewCtrl'
+          controller: 'IntakeFormNewCtrl'
         })
         .when('/roles/edit', {
           redirectTo: '/roles/new'
         })
         .when('/roles/edit/:guid', {
           templateUrl: 'partials/roles--edit.html',
-          controller: 'IntakeRoleEditCtrl'
+          controller: 'IntakeFormEditCtrl'
         })
         .when('/vision', {
           templateUrl: 'partials/vision.html',
@@ -44,13 +44,14 @@
         })
         .when('/personas/new', {
           templateUrl: 'partials/personas--edit.html',
-          controller: 'IntakePersonasNewCtrl'
+          controller: 'IntakeFormNewCtrl'
         })
         .when('/personas/edit', {
           redirectTo: '/personas/new'
         })
         .when('/personas/edit/:guid', {
-          redirectTo: '/personas/new'
+          redirectTo: '/personas/new',
+          controller: 'IntakeFormEditCtrl'
         })
         .otherwise({
           redirectTo: '/'

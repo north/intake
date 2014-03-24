@@ -37,29 +37,46 @@
     $scope.project = dataService.get();
   });
 
-  intakeControllers.controller('IntakeRoleNewCtrl', function ($scope, dataService) {
+  intakeControllers.controller('IntakeFormNewCtrl', function ($scope, $location, dataService) {
     $scope.project = dataService.get();
+    var path = $location.path().split('/')[1];
+
+    $scope.updateImage = function (image) {
+      $scope.image = image;
+    };
+
     $scope.save = function () {
-      dataService.add('roles', $scope.role);
+      if ($scope.image) {
+        $scope.item.image = $scope.image;
+      }
+      dataService.add(path, $scope.item);
     };
   });
 
-  intakeControllers.controller('IntakeRoleEditCtrl', function ($scope, dataService) {
+  intakeControllers.controller('IntakeFormEditCtrl', function ($scope, $location, dataService) {
     $scope.project = dataService.get();
-    $scope.role = {};
     $scope.remove = true;
 
+    var path = $location.path().split('/')[1];
+
     // Set Current Scope for Role
-    $scope.role = dataService.find('roles');
+    $scope.item = dataService.find(path);
+
+    $scope.updateImage = function (image) {
+      $scope.image = image;
+    };
 
     // Destroy a Role
     $scope.destroy = function () {
-      dataService.remove('roles');
+      dataService.remove(path);
     };
 
     // Update a Role
     $scope.save = function () {
-      dataService.update('roles', $scope.role);
+      if ($scope.image) {
+        $scope.item.image = $scope.image;
+      }
+      dataService.update(path, $scope.item);
     };
   });
 
@@ -80,22 +97,6 @@
 
   intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
     $scope.personas = dataService.get('personas');
-  });
-
-  intakeControllers.controller('IntakePersonasNewCtrl', function ($scope, dataService) {
-    $scope.personas = dataService.get('personas');
-
-    $scope.updateImage = function (image) {
-      $scope.image = image;
-    };
-
-    $scope.save = function () {
-      var persona = $scope.persona;
-      if ($scope.image) {
-        persona.image = $scope.image;
-      }
-      dataService.add('personas', $scope.persona);
-    };
   });
 
 })(window.angular);

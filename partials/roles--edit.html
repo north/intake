@@ -1,21 +1,21 @@
 <form name="rolesEdit">
   <div>
     <label>Role</label>
-    <input type="text" name="role" ng-model="role.role" required>
+    <input type="text" name="role" ng-model="item.role" required>
     <span ng-show="rolesEdit.role.$error.required && !rolesEdit.role.$pristine">
         Required {{rolesEdit.role.$pristine}}</span>
   </div>
 
   <div>
     <label>Name</label>
-    <input type="text" name="name" ng-model="role.name" required>
+    <input type="text" name="name" ng-model="item.name" required>
     <span ng-show="rolesEdit.name.$error.required && !rolesEdit.name.$pristine">
         Required {{rolesEdit.name.$pristine}}</span>
   </div>
 
   <div>
     <label>Email</label>
-    <input type="email" name="email" ng-model="role.email" required>
+    <input type="email" name="email" ng-model="item.email" required>
     <span ng-show="rolesEdit.email.$error.required && !rolesEdit.email.$pristine">
         Required {{rolesEdit.email.$pristine}}</span>
         <span ng-show="rolesEdit.email.$error.email && !rolesEdit.email.$pristine">
@@ -24,7 +24,7 @@
 
   <div>
     <label>Description</label>
-    <input type="text" name="description" ng-model="role.description" required>
+    <input type="text" name="description" ng-model="item.description" required>
     <span ng-show="rolesEdit.description.$error.required && !rolesEdit.description.$pristine">
         Required {{rolesEdit.description.$pristine}}</span>
   </div>
