@@ -50,7 +50,7 @@
           redirectTo: '/personas/new'
         })
         .when('/personas/edit/:guid', {
-          redirectTo: '/personas/new',
+          templateUrl: 'partials/personas--edit.html',
           controller: 'IntakeFormEditCtrl'
         })
         .otherwise({
