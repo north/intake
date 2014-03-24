@@ -9,7 +9,7 @@
   ]);
 
   intakeControllers.controller('IntakeHeaderCtrl', function ($scope, dataService) {
-    $scope.project = dataService.getProject();
+    $scope.project = dataService.get();
     $scope.vision = dataService.getVision();
     // $scope.personas = dataService.getPersonas();
 
@@ -29,7 +29,7 @@
   });
 
   intakeControllers.controller('IntakeRootCtrl', function ($scope, dataService, localStorageService) {
-    $scope.project = dataService.getProject();
+    $scope.project = dataService.get();
 
     // Save Client info when client.name changes
     $scope.$watch('project.name', function () {
@@ -38,53 +38,37 @@
   });
 
   intakeControllers.controller('IntakeRolesCtrl', function ($scope, dataService) {
-    $scope.project = dataService.getProject();
+    $scope.project = dataService.get();
   });
 
-  intakeControllers.controller('IntakeRoleNewCtrl', function ($scope, $location, $timeout, dataService, guidService, localStorageService) {
-    $scope.project = dataService.getProject();
+  intakeControllers.controller('IntakeRoleNewCtrl', function ($scope, dataService) {
+    $scope.project = dataService.get();
     $scope.save = function () {
-      var role = $scope.role;
-      role = guidService.add(role);
-      dataService.addRole($scope.role);
-      localStorageService.add('project', $scope.project);
-      $timeout(function () {
-        $location.path('/roles');
-      });
+      dataService.add('roles', $scope.role);
     };
   });
 
-  intakeControllers.controller('IntakeRoleEditCtrl', function ($scope, $location, $timeout, $routeParams, dataService, guidService, localStorageService) {
-    $scope.project = dataService.getProject();
+  intakeControllers.controller('IntakeRoleEditCtrl', function ($scope, dataService) {
+    $scope.project = dataService.get();
     $scope.role = {};
     $scope.remove = true;
-    var roleId = $routeParams.roleId;
 
     // Set Current Scope for Role
-    $scope.role = guidService.find($scope.project.roles, roleId);
-    console.log($scope.role);
+    $scope.role = dataService.find('roles');
 
     // Destroy a Role
     $scope.destroy = function () {
-      $scope.project.roles = guidService.remove($scope.project.roles, roleId);
-      localStorageService.add('project', $scope.project);
-      $timeout(function () {
-        $location.path('/roles');
-      });
+      dataService.remove('roles');
     };
 
     // Update a Role
     $scope.save = function () {
-      $scope.project.roles = guidService.update($scope.project.roles, roleId, $scope.role);
-      localStorageService.add('project', $scope.project);
-      $timeout(function () {
-        $location.path('/roles');
-      });
+      dataService.update('roles', $scope.role);
     };
   });
 
   intakeControllers.controller('IntakeVisionCtrl', function ($scope, dataService, localStorageService) {
-    $scope.vision = dataService.getVision();
+    $scope.vision = dataService.get('vision');
 
     // Save Client info when client.name changes
     $scope.$watch('vision.statement', function () {
@@ -112,11 +96,11 @@
   });
 
   intakeControllers.controller('IntakePersonasCtrl', function ($scope, dataService) {
-    $scope.personas = dataService.getProject().personas;
+    $scope.personas = dataService.get('personas');
   });
 
   intakeControllers.controller('IntakePersonasNewCtrl', function ($scope, $location, $timeout, dataService) {
-    $scope.personas = dataService.getProject().personas;
+    $scope.personas = dataService.get('personas');
 
     $scope.updateImage = function (image) {
       $scope.image = image;
@@ -127,7 +111,7 @@
       if ($scope.image) {
         persona.image = $scope.image;
       }
-      dataService.addItem('personas', $scope.persona);
+      dataService.add('personas', $scope.persona);
       $timeout(function () {
         $location.path('/personas');
       });

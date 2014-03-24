@@ -16,39 +16,27 @@
     'LocalStorageModule'
   ]);
 
-  intakeFactories.factory('dataService', function (localStorageService) {
+  intakeFactories.factory('dataService', function ($location, $routeParams, localStorageService) {
     var project = localStorageService.get('project') || {};
     var vision = localStorageService.get('vision') || {};
 
     return {
-      getProject: function () {
-        return project;
+      get: function (key) {
+        if (key === undefined) {
+          return project;
+        }
+        else {
+          return project[key];
+        }
       },
       getVision: function () {
         return vision;
       },
-      addRole: function (value) {
-        project.roles = project.roles || [];
-        project.roles.push(value);
-      },
-      addItem: function (key, value) {
-        project[key] = project[key] || [];
-        value.guid = guid();
-        project[key].push(value);
-        localStorageService.add('project', project);
-      }
-    };
-  });
-
-  intakeFactories.factory('guidService', function () {
-    return {
-      add: function (item) {
-        item.guid = guid();
-        return item;
-      },
-      find: function (items, guid) {
+      find: function (key, guid) {
+        var search = project[key];
         var elem = {};
-        items.forEach(function (element) {
+        guid = guid || $routeParams.guid;
+        search.forEach(function (element) {
           if (element.guid === guid) {
             elem = element;
             return;
@@ -56,26 +44,50 @@
         });
         return elem;
       },
-      remove: function (items, guid) {
+      add: function (key, value, redirect) {
+        redirect = redirect || key;
+        project[key] = project[key] || [];
+        value.guid = guid();
+        project[key].push(value);
+        localStorageService.add('project', project);
+        if (redirect !== false) {
+          $location.path('/' + redirect);
+        }
+      },
+      remove: function (key, guid, redirect) {
+        var search = project[key];
         var itemHold = [];
-        items.forEach(function (element) {
+        guid = guid || $routeParams.guid;
+        redirect = redirect || key;
+        search.forEach(function (element) {
           if (element.guid !== guid) {
             itemHold.push(element);
           }
         });
-        return itemHold;
+        project[key] = itemHold;
+        localStorageService.add('project', project);
+        if (redirect !== false) {
+          $location.path('/' + redirect);
+        }
       },
-      update: function (items, guid, update) {
+      update: function (key, value, guid, redirect) {
+        var search = project[key];
         var itemHold = [];
-        items.forEach(function (element) {
+        guid = guid || $routeParams.guid;
+        redirect = redirect || key;
+        search.forEach(function (element) {
           if (element.guid === guid) {
-            itemHold.push(update);
+            itemHold.push(value);
           }
           else {
             itemHold.push(element);
           }
         });
-        return itemHold;
+        project[key] = itemHold;
+        localStorageService.add('project', project);
+        if (redirect !== false) {
+          $location.path('/' + redirect);
+        }
       }
     };
   });
