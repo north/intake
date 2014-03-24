@@ -24,8 +24,6 @@
             var importData = JSON.parse(evt.target.result);
 
             localStorageService.add('project', importData.project || {});
-            localStorageService.add('vision', importData.vision || {});
-            localStorageService.add('personas', importData.personas || {});
             location.reload(true);
           };
 
