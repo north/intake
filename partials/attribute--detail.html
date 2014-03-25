@@ -1,0 +1,38 @@
+<form name="attributeDetail">
+  <h3>Details for {{detail.label}}</h3>
+  <small ng-bind-html="detail.desc"></small>
+
+  <br>
+
+  <label>Total</label>
+  <input type="text" ng-model="detail.total" required>
+  <br>
+
+  <label>
+    <input type="checkbox" ng-model="detail.required"> Required
+  </label>
+  <br>
+
+  <label>
+    Input Type:
+  </label>
+  <select ng-model="detail.datatype" required>
+    <option value="{{type.id}}" ng-repeat="type in datatypes">{{type.label}}</option>
+  </select>
+  <br>
+
+  <label>Limits</label>
+  <input type="text" ng-model="detail.limits" required>
+  <br>
+
+  <label>Formatting</label>
+  <input type="text" ng-model="detail.formatting">
+  <br>
+
+  <label>Description</label>
+  <input type="text" ng-model="detail.description" required>
+  <br>
+
+  <button ng-click="detailCancel(detail.id)">Cancel</button>
+  <button ng-click="detailSave(detail.id)" ng-disabled="attributeDetail.$invalid">Save</button>
+</form>

@@ -131,11 +131,127 @@
     });
   });
 
-  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, schemaService) {
-    schemaService.get().then(function () {
+  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, $routeParams, $location, $sce, schemaService) {
+    schemaService.get().then(function (schema) {
       $scope.type = schemaService.type();
       $scope.properties = schemaService.properties();
+      $scope.datatypes = schemaService.datatypes();
+      // console.log($scope.datatypes);
+      $scope.step = 'attributes';
+      $scope.button = 'Next';
       $scope.search = {};
+      $scope.schema = {};
+      $scope.schema.benifits = {};
+      $scope.attributes = [];
+      // schemaService.datatypes();
+
+      // $scope.$watch('schema.attributes', function () {
+      //   console.log($scope);
+      // });
+
+      // Update a Role
+      // console.log(schema);
+
+      $scope.checkClick = function (e) {
+        var detailSet = false;
+        angular.forEach($scope.attributes, function (v, k) {
+          if (v.id === e) {
+            $scope.detail = $scope.attributes[k];
+            detailSet = true;
+          }
+        });
+
+        if (!detailSet) {
+          $scope.detail = {
+            'id': e,
+            'label': schema.properties[e].label,
+            'desc': $sce.trustAsHtml(schema.properties[e].comment),
+            'datatype': 'Text'
+          };
+        }
+        if (document.getElementById('checkbox--' + e).checked) {
+          $scope.active = true;
+        }
+        else {
+          $scope.active = false;
+        }
+
+      }
+
+      $scope.detailCancel = function (e) {
+        var detailSet = false;
+        angular.forEach($scope.attributes, function (v, k) {
+          if (v.id === e) {
+            detailSet = true;
+          }
+        });
+
+        if (!detailSet) {
+          document.getElementById('checkbox--' + e).checked = false;
+        }
+
+        $scope.active = false;
+      }
+
+      $scope.detailSave = function (e) {
+        var detailSet = false;
+
+        angular.forEach($scope.attributes, function (v, k) {
+          if (v.id === e) {
+            $scope.attributes[k] = $scope.detail;
+            detailSet = true;
+          }
+        });
+
+        if (!detailSet) {
+          $scope.attributes.push($scope.detail);
+        }
+
+        $scope.active = false;
+        console.log($scope.attributes);
+      }
+
+      $scope.back = function () {
+        switch ($scope.step) {
+          case 'value':
+            $scope.step = 'basic';
+            break;
+          case 'attributes':
+            $scope.step = 'value';
+            break;
+          case 'details':
+            $scope.step = 'attributes';
+            break;
+        }
+      };
+
+      $scope.save = function () {
+        if ($scope.schema.title === undefined || $scope.schema.title === '') {
+          $scope.schema.title = $scope.type.label;
+        }
+
+        switch ($scope.step) {
+          case 'basic':
+            $scope.step = 'value';
+            break;
+          case 'value':
+            $scope.step = 'attributes';
+            break;
+          case 'attributes':
+            $scope.schema.details = [];
+            angular.forEach($scope.schema.attributes, function (v) {
+              $scope.schema.details.push({'id': v});
+            });
+            $scope.step = 'details';
+            break;
+          case 'details':
+            // $scope.step = 'all';
+            $scope.button = 'Save';
+            break;
+        }
+
+        // console.log($scope.schema);
+      };
     });
   });
 

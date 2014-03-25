@@ -2,8 +2,20 @@
   'use strict';
 
   var intakeDirectives = angular.module('intakeDirectives', [
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'intakeFactories'
   ]);
+
+  intakeDirectives.directive('attributedetails', function () {
+
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/attribute--detail.html',
+      link: function () {
+        // console.log(schemaService);
+      }
+    }
+  });
 
   intakeDirectives.directive('import', function (localStorageService) {
     return {

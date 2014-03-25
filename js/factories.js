@@ -117,10 +117,6 @@
                   });
                   data.types[key].children = children.join(', ');
                 }
-
-                if (key === 'AcceptAction') {
-                  console.log(value);
-                }
               });
               schema = data;
               localStorageService.add('schema', data);
@@ -144,12 +140,17 @@
           if (schema.properties[v].comment.indexOf('legacy ') === -1) {
             properties.push({
               'label': schema.properties[v].label,
-              'desc': $sce.trustAsHtml(schema.properties[v].comment)
+              'desc': $sce.trustAsHtml(schema.properties[v].comment),
+              'id': schema.properties[v].id
             });
           }
         });
 
         return properties;
+      },
+      datatypes: function () {
+        // console.log(schema.datatypes);
+        return schema.datatypes;
       }
     };
   });

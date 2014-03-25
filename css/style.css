@@ -1,6 +1,7 @@
 /* line 1, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_kickstart.scss */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -10,7 +11,7 @@ img, video {
   height: auto;
 }
 
-/* line 7, ../sass/style.scss */
+/* line 8, ../sass/style.scss */
 html {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-weight: 300;
@@ -18,87 +19,87 @@ html {
   line-height: 1.618em;
 }
 @media (min-width: 558px) {
-  /* line 7, ../sass/style.scss */
+  /* line 8, ../sass/style.scss */
   html {
     font-size: 1.15em;
   }
 }
 @media (min-width: 692px) {
-  /* line 7, ../sass/style.scss */
+  /* line 8, ../sass/style.scss */
   html {
     font-size: 1em;
   }
 }
 @media (min-width: 951px) {
-  /* line 7, ../sass/style.scss */
+  /* line 8, ../sass/style.scss */
   html {
     font-size: 1.15em;
   }
 }
 
-/* line 23, ../sass/style.scss */
+/* line 24, ../sass/style.scss */
 body > footer {
   clear: both;
 }
 
-/* line 27, ../sass/style.scss */
+/* line 28, ../sass/style.scss */
 .roles {
   list-style-type: none;
 }
 
-/* line 32, ../sass/style.scss */
+/* line 33, ../sass/style.scss */
 .roles--display > span {
   display: inline-block;
   float: left;
 }
-/* line 36, ../sass/style.scss */
+/* line 37, ../sass/style.scss */
 .roles--display > span:nth-child(4) {
   display: inline-block;
   float: left;
   clear: both;
 }
 
-/* line 43, ../sass/style.scss */
+/* line 44, ../sass/style.scss */
 ._main {
   max-width: 1024px;
   margin: 0 auto;
 }
 
 @media (min-width: 692px) {
-  /* line 48, ../sass/style.scss */
+  /* line 49, ../sass/style.scss */
   ._main--primary {
     width: 60%;
     float: left;
   }
 }
 @media (min-width: 951px) {
-  /* line 48, ../sass/style.scss */
+  /* line 49, ../sass/style.scss */
   ._main--primary {
     width: 61.8047%;
   }
 }
 
 @media (min-width: 692px) {
-  /* line 59, ../sass/style.scss */
+  /* line 60, ../sass/style.scss */
   .main--secondary {
     width: 40%;
     float: right;
   }
 }
 @media (min-width: 951px) {
-  /* line 59, ../sass/style.scss */
+  /* line 60, ../sass/style.scss */
   .main--secondary {
     width: 38.1953%;
   }
 }
 
-/* line 70, ../sass/style.scss */
+/* line 71, ../sass/style.scss */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1em;
   font-weight: 500;
 }
 
-/* line 75, ../sass/style.scss */
+/* line 76, ../sass/style.scss */
 header {
   line-height: 1em;
 }
@@ -108,32 +109,44 @@ header:after {
   display: table;
   clear: both;
 }
-/* line 78, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 header > h1 {
   width: 50%;
   float: left;
 }
-/* line 82, ../sass/style.scss */
+/* line 83, ../sass/style.scss */
 header > h3 {
   width: 50%;
   float: right;
   text-align: right;
 }
 
-/* line 89, ../sass/style.scss */
+/* line 90, ../sass/style.scss */
 main {
   display: block;
 }
 
-/* line 93, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 .save {
   float: right;
 }
 
-/* line 97, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 input[ng-model="project.name"] {
   width: 100%;
   font-size: 1.5em;
   border: none;
   text-align: center;
+}
+
+/* line 105, ../sass/style.scss */
+._columns {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+}
+
+/* line 109, ../sass/style.scss */
+._columns > label {
+  display: block;
 }

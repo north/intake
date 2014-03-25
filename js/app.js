@@ -3,6 +3,7 @@
 
   var intakeApp = angular.module('intakeApp', [
     'ngRoute',
+    'checklist-model',
     'intakeControllers',
     'intakeDirectives',
     'intakeFilters'

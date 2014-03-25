@@ -1,3 +1,4 @@
+@import "compass";
 @import "breakpoint";
 @import "toolkit";
 @import "toolkit/kickstart";
@@ -99,4 +100,12 @@ input[ng-model="project.name"] {
   font-size: 1.5em;
   border: none;
   text-align: center;
+}
+
+._columns {
+  @include column-count(2);
+}
+
+._columns > label {
+  display: block;
 }
