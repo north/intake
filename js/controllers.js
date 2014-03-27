@@ -111,6 +111,12 @@
     $scope.schemas = dataService.get('content-models');
   });
 
+  intakeControllers.controller('IntakeContentModelViewCtrl', function ($scope, dataService, schemaService) {
+    $scope.schema = dataService.find('content-models');
+    $scope.personas = dataService.get('personas');
+    $scope.properties = schemaService.properties($scope.schema.type);
+  });
+
 
   intakeControllers.controller('IntakeContentModelSelectCtrl', function ($scope, $timeout, schemaService) {
     var parents = function (input) {
@@ -369,7 +375,7 @@
   intakeControllers.controller('IntakeContentModelEditCtrl', function ($scope, $routeParams, $timeout, $location, dataService, schemaService) {
     schemaService.get().then(function (schema) {
       $scope.schemaAll = schema;
-      $scope.type = schemaService.type();
+
       $scope.datatypes = schemaService.datatypes();
       $scope.personas = dataService.get('personas');
 
@@ -379,7 +385,7 @@
       $scope.search = {};
 
       $scope.schema = dataService.find('content-models');
-
+      $scope.type = $scope.schema.type;
       $scope.properties = schemaService.properties($scope.schema.type);
 
       $scope.selected = $scope.schema.selected;

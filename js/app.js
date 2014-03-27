@@ -54,6 +54,13 @@
         .when('/content-models/edit', {
           redirectTo: '/content-models/new'
         })
+        .when('/content-models/view/:guid', {
+          templateUrl: 'partials/schema--view.html',
+          controller: 'IntakeContentModelViewCtrl'
+        })
+        .when('/content-models/view', {
+          redirectTo: '/content-models'
+        })
         .when('/personas', {
           templateUrl: 'partials/personas.html',
           controller: 'IntakePersonasCtrl'
