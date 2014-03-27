@@ -18,7 +18,11 @@
 </head>
 <body>
   <header ng-controller="IntakeHeaderCtrl">
-    <h1><a href="/"><span>Intake</span> <span>Center</span></a></h1>
+    <span>
+      <h1><a href="/"><span>Intake</span> <span>Center</span></a></h1>
+      <p>A Content Strategy companion to <a href="http://pointnorth.io" class="north">North</a></p>
+    </span>
+
     <h3>{{project.name || '&nbsp'}}</h3>
     <div class="save">
       <button ng-click="IntakeDownload()">Export</button>
