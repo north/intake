@@ -109,3 +109,16 @@ input[ng-model="project.name"] {
 ._columns > label {
   display: block;
 }
+
+
+.overlay {
+  @include absolute-center($fixed: true);
+  padding: .5rem;
+  background: white;
+  border: 1px solid black;
+  min-width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1;
+  box-shadow: 0 0 2em .25em rgba(black, .5);
+}

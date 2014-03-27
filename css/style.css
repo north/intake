@@ -1,11 +1,11 @@
-/* line 1, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_kickstart.scss */
+/* line 1, ../vendor/ruby/2.0.0/gems/toolkit-2.1.0/stylesheets/toolkit/_kickstart.scss */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 11, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_kickstart.scss */
+/* line 11, ../vendor/ruby/2.0.0/gems/toolkit-2.1.0/stylesheets/toolkit/_kickstart.scss */
 img, video {
   max-width: 100%;
   height: auto;
@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 header {
   line-height: 1em;
 }
-/* line 13, ../vendor/ruby/2.0.0/gems/toolkit-2.0.1/stylesheets/toolkit/_clearfix.scss */
+/* line 13, ../vendor/ruby/2.0.0/gems/toolkit-2.1.0/stylesheets/toolkit/_clearfix.scss */
 header:after {
   content: "";
   display: table;
@@ -149,4 +149,23 @@ input[ng-model="project.name"] {
 /* line 109, ../sass/style.scss */
 ._columns > label {
   display: block;
+}
+
+/* line 114, ../sass/style.scss */
+.overlay {
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  padding: .5rem;
+  background: white;
+  border: 1px solid black;
+  min-width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1;
+  box-shadow: 0 0 2em 0.25em rgba(0, 0, 0, 0.5);
 }
