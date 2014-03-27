@@ -47,6 +47,13 @@
           templateUrl: 'partials/schema--edit.html',
           controller: 'IntakeContentModelNewCtrl'
         })
+        .when('/content-models/edit/:guid', {
+          templateUrl: 'partials/schema--edit.html',
+          controller: 'IntakeContentModelEditCtrl'
+        })
+        .when('/content-models/edit', {
+          redirectTo: '/content-models/new'
+        })
         .when('/personas', {
           templateUrl: 'partials/personas.html',
           controller: 'IntakePersonasCtrl'

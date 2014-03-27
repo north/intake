@@ -1,9 +1,9 @@
 <h2>Content Models</h2>
 
-<a href="#/content-models/new">Add New Content Model</a>
 <ul class="schemas">
+  <li><a href="#/content-models/new">Add New Content Model</a></li>
   <li class="schemas--display" ng-repeat="schema in schemas | orderBy:'value'">
-    <h2>{{schema.title}}</h2>
+    <h2>{{schema.title}} <a href="#/content-models/edit/{{schema.guid}}">Edit</a></h2>
     <p>{{schema.description}}</p>
     <small>Total Value: {{schema.value}} | Valuable to: {{schema.benefits.length}} / {{personas.length}}</small>
   </li>

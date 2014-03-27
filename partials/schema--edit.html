@@ -1,4 +1,5 @@
-<h2>New {{type.label}}</h2>
+<h2 ng-show="type.label">New {{type.label}}</h2>
+<h2 ng-hide="type.label">Edit {{schema.title}}</h2>
 
 <form name="schemaEdit" class="_main--primary">
   <h3>{{stepName}}</h3>

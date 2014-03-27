@@ -152,20 +152,32 @@
         // console.log(schema.datatypes);
         return schema.datatypes;
       },
-      save: function (model) {
+      save: function (model, update) {
+        update = update || false;
         var finalModel = {};
 
+        if (model.guid !== undefined) {
+          finalModel.guid = model.guid;
+        }
+
+        finalModel.type = model.type;
         finalModel.title = model.title;
         finalModel.description = model.description;
-        finalModel.selected = model.selected;
+        finalModel.selected = {};
+        finalModel.selected.attributes = [];
+        finalModel.selected.benefits = [];
         finalModel.attributes = [];
         finalModel.benefits = [];
         finalModel.value = 0;
 
+        //////////////////////////////
+        // Filter by Selected
+        //////////////////////////////
         if (model.selected.attributes.length > 0) {
           angular.forEach(model.selected.attributes, function (k) {
             angular.forEach(model.attributes, function (v) {
               if (v.id === k) {
+
                 finalModel.attributes.push(v);
               }
             });
@@ -182,11 +194,46 @@
           });
         }
 
+        console.log(model.selected);
+        console.log(finalModel.attributes);
+
+        //////////////////////////////
+        // Filter by Filled Out
+        //////////////////////////////
+        if (finalModel.attributes.length > 0) {
+          angular.forEach(finalModel.attributes, function (v) {
+            angular.forEach(model.selected.attributes, function (k) {
+              if (v.id === k) {
+                finalModel.selected.attributes.push(k);
+              }
+            });
+          });
+        }
+
+
+        if (finalModel.benefits.length > 0) {
+          angular.forEach(finalModel.benefits, function (v) {
+            angular.forEach(model.selected.benefits, function (k) {
+              if (v.guid === k) {
+                finalModel.selected.benefits.push(k);
+              }
+            });
+          });
+        }
+
         angular.forEach(finalModel.benefits, function (v) {
           finalModel.value += parseInt(v.value);
         });
 
-        dataService.add('content-models', finalModel);
+        console.log(finalModel);
+
+        if (!update) {
+          dataService.add('content-models', finalModel);
+        }
+        else {
+          dataService.update('content-models', finalModel);
+        }
+
       }
     };
   });

@@ -150,8 +150,8 @@
       // Benefits
       //////////////////////////////
       angular.forEach($scope.$parent.benefits, function (v, k) {
-        if (v.persona === e) {
-          $scope.benefit = $scope.benefits[k];
+        if (v.guid === e) {
+          $scope.benefit = $scope.$parent.benefits[k];
           detailSet = true;
           return;
         }
@@ -207,7 +207,7 @@
 
       angular.forEach($scope.$parent.benefits, function (v, k) {
         if (v.guid === e) {
-          $scope.benefits[k] = $scope.benefit;
+          $scope.benefits[k] = $scope.$parentbenefit;
           detailSet = true;
           return;
         }
@@ -238,7 +238,7 @@
       //////////////////////////////
       angular.forEach($scope.$parent.attributes, function (v, k) {
         if (v.id === e) {
-          $scope.detail = $scope.attributes[k];
+          $scope.detail = $scope.$parent.attributes[k];
           detailSet = true;
           return;
         }
@@ -346,7 +346,7 @@
         switch ($scope.step) {
           case 'basic':
             $scope.step = 'value';
-            $scope.stepName = 'Basic Info';
+            $scope.stepName = 'Benefits and Value';
             break;
           case 'value':
             $scope.step = 'attributes';
@@ -354,6 +354,7 @@
             $scope.button = 'Save';
             break;
           case 'attributes':
+            $scope.schema.type = $scope.type;
             $scope.schema.selected = $scope.selected;
             $scope.schema.benefits = $scope.benefits;
             $scope.schema.attributes = $scope.attributes;
@@ -365,37 +366,71 @@
     });
   });
 
-  intakeControllers.controller('IntakeContentModelEditCtrl', function ($scope, $location, dataService) {
-    $scope.project = dataService.get();
-    $scope.remove = true;
+  intakeControllers.controller('IntakeContentModelEditCtrl', function ($scope, $routeParams, $timeout, $location, dataService, schemaService) {
+    schemaService.get().then(function (schema) {
+      $scope.schemaAll = schema;
+      $scope.type = schemaService.type();
+      $scope.datatypes = schemaService.datatypes();
+      $scope.personas = dataService.get('personas');
 
-    var path = $location.path().split('/')[1];
+      $scope.step = 'basic';
+      $scope.stepName = 'Basic Info';
+      $scope.button = 'Next';
+      $scope.search = {};
 
-    // Set Current Scope for Role
-    $scope.item = dataService.find(path);
+      $scope.schema = dataService.find('content-models');
 
-    if ($scope.item.image) {
-      $scope.image = $scope.item.image;
-    }
+      $scope.properties = schemaService.properties($scope.schema.type);
 
-    $scope.updateImage = function (image) {
-      $scope.image = image;
-    };
+      $scope.selected = $scope.schema.selected;
+      $scope.benefits = $scope.schema.benefits;
+      $scope.attributes = $scope.schema.attributes;
 
-    // Destroy a Role
-    $scope.destroy = function () {
-      dataService.remove(path);
-    };
+      $scope.back = function () {
+        switch ($scope.step) {
+          case 'value':
+            $scope.step = 'basic';
+            $scope.stepName = 'Basic Info';
+            break;
+          case 'attributes':
+            $scope.step = 'value';
+            $scope.stepName = 'Benefits and Value';
+            break;
+        }
+      };
 
-    // Update a Role
-    $scope.save = function () {
-      if ($scope.image) {
-        $scope.item.image = $scope.image;
-      }
-      dataService.update(path, $scope.item);
-    };
+      // Destroy a Role
+      // $scope.destroy = function () {
+      //   dataService.remove(path);
+      // };
+
+      $scope.save = function () {
+        if ($scope.schema.title === undefined || $scope.schema.title === '') {
+          $scope.schema.title = $scope.type.label;
+        }
+
+        switch ($scope.step) {
+          case 'basic':
+            $scope.step = 'value';
+            $scope.stepName = 'Benefits and Value';
+            break;
+          case 'value':
+            $scope.step = 'attributes';
+            $scope.stepName = 'Attributes';
+            $scope.button = 'Save';
+            break;
+          case 'attributes':
+            $scope.schema.type = $scope.type;
+            $scope.schema.selected = $scope.selected;
+            $scope.schema.benefits = $scope.benefits;
+            $scope.schema.attributes = $scope.attributes;
+
+            schemaService.save($scope.schema, true);
+            break;
+        }
+      };
+
+    });
   });
-
-
 
 })(window.angular);
