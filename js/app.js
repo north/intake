@@ -41,7 +41,7 @@
         })
         .when('/content-models/new', {
           templateUrl: 'partials/schema--select.html',
-          controller: 'IntakeContentModelCtrl'
+          controller: 'IntakeContentModelSelectCtrl'
         })
         .when('/content-models/new/:type', {
           templateUrl: 'partials/schema--edit.html',

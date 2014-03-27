@@ -106,7 +106,13 @@
   //////////////////////////////
   // Content Model Controllers;
   //////////////////////////////
-  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, $timeout, schemaService) {
+  intakeControllers.controller('IntakeContentModelCtrl', function ($scope, dataService) {
+    $scope.personas = dataService.get('personas');
+    $scope.schemas = dataService.get('content-models');
+  });
+
+
+  intakeControllers.controller('IntakeContentModelSelectCtrl', function ($scope, $timeout, schemaService) {
     var parents = function (input) {
       var filtered = {};
       angular.forEach(input, function (value, key) {
@@ -134,8 +140,9 @@
   //////////////////////////////
   // Details Controller
   //////////////////////////////
-  intakeControllers.controller('IntakeBenefitCtrl', function ($scope) {
+  intakeControllers.controller('IntakeBenefitCtrl', function ($scope, $timeout) {
     $scope.fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+    $scope.$parent.benefitsActive = false;
 
     $scope.$parent.benefitClick = function (e) {
       var detailSet = false;
@@ -152,7 +159,7 @@
 
       if (!detailSet) {
         $scope.benefit = {
-          'persona': e,
+          'guid': e,
           'value': 1
         };
       }
@@ -169,6 +176,9 @@
       //////////////////////////////
       if (document.getElementById('benefits--' + e).checked) {
         $scope.$parent.benefitsActive = true;
+        $timeout(function () {
+          document.getElementById('details--benefit').scrollIntoView(true);
+        });
       }
       else {
         $scope.$parent.benefitsActive = false;
@@ -179,7 +189,7 @@
       var detailSet = false;
 
       angular.forEach($scope.$parent.benefits, function (v) {
-        if (v.persona === e) {
+        if (v.guid === e) {
           detailSet = true;
           return;
         }
@@ -193,11 +203,10 @@
     };
 
     $scope.benefitSave = function (e) {
-      console.log(e);
       var detailSet = false;
 
       angular.forEach($scope.$parent.benefits, function (v, k) {
-        if (v.persona === e) {
+        if (v.guid === e) {
           $scope.benefits[k] = $scope.benefit;
           detailSet = true;
           return;
@@ -215,10 +224,11 @@
   //////////////////////////////
   // Details Controller
   //////////////////////////////
-  intakeControllers.controller('IntakeDetailCtrl', function ($scope, $sce) {
+  intakeControllers.controller('IntakeDetailCtrl', function ($scope, $sce, $timeout) {
     $scope.datatypes = $scope.$parent.datatypes;
     $scope.properties = $scope.$parent.schemaAll.properties;
     $scope.type = '';
+    $scope.$parent.detailsActive = false;
 
     $scope.$parent.detailClick = function (e) {
       var detailSet = false;
@@ -250,6 +260,9 @@
       //////////////////////////////
       if (document.getElementById('details--' + e).checked) {
         $scope.$parent.detailsActive = true;
+        $timeout(function () {
+          document.getElementById('details--attributes').scrollIntoView(true);
+        });
       }
       else {
         $scope.$parent.detailsActive = false;
@@ -295,14 +308,14 @@
     };
   });
 
-  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, $routeParams, $location, dataService, schemaService) {
+  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, $routeParams, $timeout, $location, dataService, schemaService) {
     schemaService.get().then(function (schema) {
       $scope.schemaAll = schema;
       $scope.type = schemaService.type();
       $scope.properties = schemaService.properties();
       $scope.datatypes = schemaService.datatypes();
       $scope.personas = dataService.get('personas');
-      // console.log($scope.datatypes);
+
       $scope.step = 'basic';
       $scope.stepName = 'Basic Info';
       $scope.button = 'Next';
@@ -311,8 +324,6 @@
       $scope.selected = {};
       $scope.benefits = [];
       $scope.attributes = [];
-      $scope.detailsActive = false;
-      $scope.benefitsActive = false;
 
       $scope.back = function () {
         switch ($scope.step) {
@@ -340,20 +351,49 @@
           case 'value':
             $scope.step = 'attributes';
             $scope.stepName = 'Attributes';
-            break;
-          case 'attributes':
-            // $scope.schema.details = [];
-            // angular.forEach($scope.schema.attributes, function (v) {
-            //   $scope.schema.details.push({'id': v});
-            // });
-            console.log($scope);
             $scope.button = 'Save';
             break;
-        }
+          case 'attributes':
+            $scope.schema.selected = $scope.selected;
+            $scope.schema.benefits = $scope.benefits;
+            $scope.schema.attributes = $scope.attributes;
 
-        // console.log($scope.schema);
+            schemaService.save($scope.schema);
+            break;
+        }
       };
     });
+  });
+
+  intakeControllers.controller('IntakeContentModelEditCtrl', function ($scope, $location, dataService) {
+    $scope.project = dataService.get();
+    $scope.remove = true;
+
+    var path = $location.path().split('/')[1];
+
+    // Set Current Scope for Role
+    $scope.item = dataService.find(path);
+
+    if ($scope.item.image) {
+      $scope.image = $scope.item.image;
+    }
+
+    $scope.updateImage = function (image) {
+      $scope.image = image;
+    };
+
+    // Destroy a Role
+    $scope.destroy = function () {
+      dataService.remove(path);
+    };
+
+    // Update a Role
+    $scope.save = function () {
+      if ($scope.image) {
+        $scope.item.image = $scope.image;
+      }
+      dataService.update(path, $scope.item);
+    };
   });
 
 

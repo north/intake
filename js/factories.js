@@ -91,7 +91,7 @@
     };
   });
 
-  intakeFactories.factory('schemaService', function ($routeParams, $sce, $http, $q, localStorageService) {
+  intakeFactories.factory('schemaService', function ($routeParams, $sce, $http, $q, localStorageService, dataService) {
     var schema = localStorageService.get('schema');
     return {
       get: function () {
@@ -151,6 +151,42 @@
       datatypes: function () {
         // console.log(schema.datatypes);
         return schema.datatypes;
+      },
+      save: function (model) {
+        var finalModel = {};
+
+        finalModel.title = model.title;
+        finalModel.description = model.description;
+        finalModel.selected = model.selected;
+        finalModel.attributes = [];
+        finalModel.benefits = [];
+        finalModel.value = 0;
+
+        if (model.selected.attributes.length > 0) {
+          angular.forEach(model.selected.attributes, function (k) {
+            angular.forEach(model.attributes, function (v) {
+              if (v.id === k) {
+                finalModel.attributes.push(v);
+              }
+            });
+          });
+        }
+
+        if (model.selected.benefits.length > 0) {
+          angular.forEach(model.selected.benefits, function (k) {
+            angular.forEach(model.benefits, function (v) {
+              if (v.guid === k) {
+                finalModel.benefits.push(v);
+              }
+            });
+          });
+        }
+
+        angular.forEach(finalModel.benefits, function (v) {
+          finalModel.value += parseInt(v.value);
+        });
+
+        dataService.add('content-models', finalModel);
       }
     };
   });
