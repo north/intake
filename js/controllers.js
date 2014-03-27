@@ -354,7 +354,7 @@
             $scope.button = 'Save';
             break;
           case 'attributes':
-            $scope.schema.type = $scope.type;
+            $scope.schema.type = $scope.type.id;
             $scope.schema.selected = $scope.selected;
             $scope.schema.benefits = $scope.benefits;
             $scope.schema.attributes = $scope.attributes;

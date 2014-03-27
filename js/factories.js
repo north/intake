@@ -136,6 +136,10 @@
         var properties = [];
         type = type || schema.types[$routeParams.type];
 
+        if (typeof(type) === 'string') {
+          type = schema.types[type];
+        }
+
         angular.forEach(type.properties, function (v) {
           if (schema.properties[v].comment.indexOf('legacy ') === -1) {
             properties.push({
@@ -149,7 +153,6 @@
         return properties;
       },
       datatypes: function () {
-        // console.log(schema.datatypes);
         return schema.datatypes;
       },
       save: function (model, update) {
@@ -194,9 +197,6 @@
           });
         }
 
-        console.log(model.selected);
-        console.log(finalModel.attributes);
-
         //////////////////////////////
         // Filter by Filled Out
         //////////////////////////////
@@ -224,8 +224,6 @@
         angular.forEach(finalModel.benefits, function (v) {
           finalModel.value += parseInt(v.value);
         });
-
-        console.log(finalModel);
 
         if (!update) {
           dataService.add('content-models', finalModel);
