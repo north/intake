@@ -150,22 +150,3 @@ input[ng-model="project.name"] {
 ._columns > label {
   display: block;
 }
-
-/* line 114, ../sass/style.scss */
-.overlay {
-  top: 50%;
-  left: 50%;
-  position: fixed;
-  -moz-transform: translateY(-50%) translateX(-50%);
-  -ms-transform: translateY(-50%) translateX(-50%);
-  -webkit-transform: translateY(-50%) translateX(-50%);
-  transform: translateY(-50%) translateX(-50%);
-  padding: .5rem;
-  background: white;
-  border: 1px solid black;
-  min-width: 300px;
-  max-height: 80vh;
-  overflow-y: auto;
-  z-index: 1;
-  box-shadow: 0 0 2em 0.25em rgba(0, 0, 0, 0.5);
-}
