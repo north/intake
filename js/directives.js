@@ -7,14 +7,17 @@
   ]);
 
   intakeDirectives.directive('attributedetails', function () {
-
     return {
       restrict: 'E',
-      templateUrl: 'partials/attribute--detail.html',
-      link: function () {
-        // console.log(schemaService);
-      }
-    }
+      templateUrl: 'partials/attribute--detail.html'
+    };
+  });
+
+  intakeDirectives.directive('benefits', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/benefits.html'
+    };
   });
 
   intakeDirectives.directive('import', function (localStorageService) {

@@ -131,96 +131,198 @@
     });
   });
 
-  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, $routeParams, $location, $sce, schemaService) {
+  //////////////////////////////
+  // Details Controller
+  //////////////////////////////
+  intakeControllers.controller('IntakeBenefitCtrl', function ($scope) {
+    $scope.fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+
+    $scope.$parent.benefitClick = function (e) {
+      var detailSet = false;
+      //////////////////////////////
+      // Benefits
+      //////////////////////////////
+      angular.forEach($scope.$parent.benefits, function (v, k) {
+        if (v.persona === e) {
+          $scope.benefit = $scope.benefits[k];
+          detailSet = true;
+          return;
+        }
+      });
+
+      if (!detailSet) {
+        $scope.benefit = {
+          'persona': e,
+          'value': 1
+        };
+      }
+
+      angular.forEach($scope.$parent.personas, function (v) {
+        if (v.guid === e) {
+          $scope.name = v.name;
+          return;
+        }
+      });
+
+      //////////////////////////////
+      // Set items
+      //////////////////////////////
+      if (document.getElementById('benefits--' + e).checked) {
+        $scope.$parent.benefitsActive = true;
+      }
+      else {
+        $scope.$parent.benefitsActive = false;
+      }
+    };
+
+    $scope.benefitCancel = function (e) {
+      var detailSet = false;
+
+      angular.forEach($scope.$parent.benefits, function (v) {
+        if (v.persona === e) {
+          detailSet = true;
+          return;
+        }
+      });
+
+
+      if (!detailSet) {
+        document.getElementById('benefits--' + e).checked = false;
+      }
+      $scope.$parent.benefitsActive = false;
+    };
+
+    $scope.benefitSave = function (e) {
+      console.log(e);
+      var detailSet = false;
+
+      angular.forEach($scope.$parent.benefits, function (v, k) {
+        if (v.persona === e) {
+          $scope.benefits[k] = $scope.benefit;
+          detailSet = true;
+          return;
+        }
+      });
+
+      if (!detailSet) {
+        $scope.$parent.benefits.push($scope.benefit);
+      }
+
+      $scope.$parent.benefitsActive = false;
+    };
+  });
+
+  //////////////////////////////
+  // Details Controller
+  //////////////////////////////
+  intakeControllers.controller('IntakeDetailCtrl', function ($scope, $sce) {
+    $scope.datatypes = $scope.$parent.datatypes;
+    $scope.properties = $scope.$parent.schemaAll.properties;
+    $scope.type = '';
+
+    $scope.$parent.detailClick = function (e) {
+      var detailSet = false;
+
+      //////////////////////////////
+      // Attribute Details
+      //////////////////////////////
+      angular.forEach($scope.$parent.attributes, function (v, k) {
+        if (v.id === e) {
+          $scope.detail = $scope.attributes[k];
+          detailSet = true;
+          return;
+        }
+      });
+
+      if (!detailSet) {
+        $scope.detail = {
+          'id': e,
+          'label': $scope.properties[e].label,
+          'description': $sce.trustAsHtml($scope.properties[e].comment),
+          'datatype': 'Text'
+        };
+      }
+
+
+
+      //////////////////////////////
+      // Set items
+      //////////////////////////////
+      if (document.getElementById('details--' + e).checked) {
+        $scope.$parent.detailsActive = true;
+      }
+      else {
+        $scope.$parent.detailsActive = false;
+      }
+    };
+
+    $scope.detailCancel = function (e) {
+      var detailSet = false;
+
+      angular.forEach($scope.$parent.attributes, function (v) {
+        if (v.id === e) {
+          detailSet = true;
+          return;
+        }
+      });
+
+
+      if (!detailSet) {
+        document.getElementById('details--' + e).checked = false;
+      }
+      $scope.$parent.detailsActive = false;
+    };
+
+    $scope.detailSave = function (e) {
+      var detailSet = false;
+
+      //////////////////////////////
+      // Attribute Details
+      //////////////////////////////
+      angular.forEach($scope.$parent.attributes, function (v, k) {
+        if (v.id === e) {
+          $scope.attributes[k] = $scope.detail;
+          detailSet = true;
+          return;
+        }
+      });
+
+      if (!detailSet) {
+        $scope.$parent.attributes.push($scope.detail);
+      }
+
+      $scope.$parent.detailsActive = false;
+    };
+  });
+
+  intakeControllers.controller('IntakeContentModelNewCtrl', function ($scope, $routeParams, $location, dataService, schemaService) {
     schemaService.get().then(function (schema) {
+      $scope.schemaAll = schema;
       $scope.type = schemaService.type();
       $scope.properties = schemaService.properties();
       $scope.datatypes = schemaService.datatypes();
+      $scope.personas = dataService.get('personas');
       // console.log($scope.datatypes);
-      $scope.step = 'attributes';
+      $scope.step = 'basic';
+      $scope.stepName = 'Basic Info';
       $scope.button = 'Next';
       $scope.search = {};
       $scope.schema = {};
-      $scope.schema.benifits = {};
+      $scope.selected = {};
+      $scope.benefits = [];
       $scope.attributes = [];
-      // schemaService.datatypes();
-
-      // $scope.$watch('schema.attributes', function () {
-      //   console.log($scope);
-      // });
-
-      // Update a Role
-      // console.log(schema);
-
-      $scope.checkClick = function (e) {
-        var detailSet = false;
-        angular.forEach($scope.attributes, function (v, k) {
-          if (v.id === e) {
-            $scope.detail = $scope.attributes[k];
-            detailSet = true;
-          }
-        });
-
-        if (!detailSet) {
-          $scope.detail = {
-            'id': e,
-            'label': schema.properties[e].label,
-            'desc': $sce.trustAsHtml(schema.properties[e].comment),
-            'datatype': 'Text'
-          };
-        }
-        if (document.getElementById('checkbox--' + e).checked) {
-          $scope.active = true;
-        }
-        else {
-          $scope.active = false;
-        }
-
-      }
-
-      $scope.detailCancel = function (e) {
-        var detailSet = false;
-        angular.forEach($scope.attributes, function (v, k) {
-          if (v.id === e) {
-            detailSet = true;
-          }
-        });
-
-        if (!detailSet) {
-          document.getElementById('checkbox--' + e).checked = false;
-        }
-
-        $scope.active = false;
-      }
-
-      $scope.detailSave = function (e) {
-        var detailSet = false;
-
-        angular.forEach($scope.attributes, function (v, k) {
-          if (v.id === e) {
-            $scope.attributes[k] = $scope.detail;
-            detailSet = true;
-          }
-        });
-
-        if (!detailSet) {
-          $scope.attributes.push($scope.detail);
-        }
-
-        $scope.active = false;
-        console.log($scope.attributes);
-      }
+      $scope.detailsActive = false;
+      $scope.benefitsActive = false;
 
       $scope.back = function () {
         switch ($scope.step) {
           case 'value':
             $scope.step = 'basic';
+            $scope.stepName = 'Basic Info';
             break;
           case 'attributes':
             $scope.step = 'value';
-            break;
-          case 'details':
-            $scope.step = 'attributes';
+            $scope.stepName = 'Benefits and Value';
             break;
         }
       };
@@ -233,19 +335,18 @@
         switch ($scope.step) {
           case 'basic':
             $scope.step = 'value';
+            $scope.stepName = 'Basic Info';
             break;
           case 'value':
             $scope.step = 'attributes';
+            $scope.stepName = 'Attributes';
             break;
           case 'attributes':
-            $scope.schema.details = [];
-            angular.forEach($scope.schema.attributes, function (v) {
-              $scope.schema.details.push({'id': v});
-            });
-            $scope.step = 'details';
-            break;
-          case 'details':
-            // $scope.step = 'all';
+            // $scope.schema.details = [];
+            // angular.forEach($scope.schema.attributes, function (v) {
+            //   $scope.schema.details.push({'id': v});
+            // });
+            console.log($scope);
             $scope.button = 'Save';
             break;
         }

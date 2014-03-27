@@ -1,22 +1,29 @@
 <h2>New {{type.label}}</h2>
 
 <form name="schemaEdit" class="_main--primary">
+  <h3>{{stepName}}</h3>
   <!-- Basic Information -->
   <div ng-show="step === 'basic'">
-    <h3>Basic Info</h3>
     Title:
     <input type="text" ng-model="schema.title" placeholder="{{type.label}}">
     Description:
     <input type="text" ng-model="schema.description">
   </div>
 
+  <div ng-show="step === 'value'">
+    <div class="_columns">
+      <label ng-repeat="persona in personas | orderBy:'name'">
+        <input type="checkbox" ng-click="benefitClick(persona.guid)" id="benefits--{{persona.guid}}" ng-disabled="benefitsActive" checklist-model="selected.benefits" checklist-value="persona.guid"> {{persona.name}}
+      </label>
+    </div>
+  </div>
+
   <!-- Attributes -->
   <div ng-show="step === 'attributes'">
-    <h3>Attributes</h3>
     <input type="search" ng-model="search.attributes" placeholder="Search">
     <div class="_columns">
       <label ng-repeat="property in properties | filter:search.attributes | orderBy:'label'">
-        <input type="checkbox" ng-click="checkClick(property.id)" id="checkbox--{{property.id}}" ng-disabled="active"> {{property.label}}
+        <input type="checkbox" ng-click="detailClick(property.id)" id="details--{{property.id}}" ng-disabled="detailsActive" checklist-model="selected.attributes" checklist-value="property.id"> {{property.label}}
       </label>
     </div>
 
@@ -32,8 +39,8 @@
 
   <div>
     <a href="#/schemaEdits">Cancel</a>
-    <button ng-click="back()" ng-disabled="first">Back</button>
-    <button ng-click="save()" ng-disabled="schemaEdit.$invalid">{{button}}</button>
+    <button ng-click="back()" ng-disabled="first || detailsActive || benefitsActive">Back</button>
+    <button ng-click="save()" ng-disabled="schemaEdit.$invalid || detailsActive || benefitsActive">{{button}}</button>
     <button ng-click="destroy()"
           ng-show="remove">Delete</button>
   </div>
@@ -41,5 +48,6 @@
 </form>
 
 <div class="_main--secondary">
-  <attributedetails ng-show="active"></attributedetails>
+  <benefits id="benefitDetails" class="overlay" ng-show="benefitsActive" ng-controller="IntakeBenefitCtrl"></benefits>
+  <attributedetails id="detailDetails" class="overlay" ng-show="detailsActive" ng-controller="IntakeDetailCtrl"></attributedetails>
 </div>

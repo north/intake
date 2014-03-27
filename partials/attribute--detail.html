@@ -1,7 +1,6 @@
 <form name="attributeDetail">
   <h3>Details for {{detail.label}}</h3>
-  <small ng-bind-html="detail.desc"></small>
-
+  <small ng-bind-html="detail.description"></small>
   <br>
 
   <label>Total</label>
@@ -27,10 +26,6 @@
 
   <label>Formatting</label>
   <input type="text" ng-model="detail.formatting">
-  <br>
-
-  <label>Description</label>
-  <input type="text" ng-model="detail.description" required>
   <br>
 
   <button ng-click="detailCancel(detail.id)">Cancel</button>

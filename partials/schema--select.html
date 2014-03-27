@@ -12,7 +12,7 @@
 
 <ul>
   <li ng-repeat="type in types | schemaTypeFilter:{label: search.label, subtype: search.subtype}">
-    <h4><a href="#/content-models/new/{{type.id}}/basic">{{type.label}}</a></h4>
+    <h4><a href="#/content-models/new/{{type.id}}">{{type.label}}</a></h4>
     <small ng-if="type.parents">Child of <em>{{type.parents}}</em></small><br>
     <small ng-if="type.children">Parent of <em>{{type.children}}</em></small>
   </li>
