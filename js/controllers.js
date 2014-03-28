@@ -111,10 +111,34 @@
     $scope.schemas = dataService.get('content-models');
   });
 
-  intakeControllers.controller('IntakeContentModelViewCtrl', function ($scope, dataService, schemaService) {
-    $scope.schema = dataService.find('content-models');
-    $scope.personas = dataService.get('personas');
-    $scope.properties = schemaService.properties($scope.schema.type);
+  intakeControllers.controller('IntakeContentModelViewCtrl', function ($scope, $sce, dataService, schemaService) {
+    schemaService.get().then(function (schema) {
+      $scope.properties = schema.properties;
+      $scope.schema = dataService.find('content-models');
+      $scope.personas = dataService.get('personas');
+
+      // Get Persona Names and Images
+      angular.forEach($scope.schema.benefits, function (v, k) {
+        angular.forEach($scope.personas, function (value) {
+          if (value.guid === v.guid) {
+            $scope.schema.benefits[k].image = value.image;
+            $scope.schema.benefits[k].name = value.name;
+            return;
+          }
+        });
+      });
+
+      angular.forEach($scope.schema.attributes, function (v, k) {
+        angular.forEach($scope.properties, function (value) {
+          if (v.id === value.id) {
+            $scope.schema.attributes[k].description = $sce.trustAsHtml(value.comment);
+            return;
+          }
+        });
+      });
+
+      console.log($scope.schema);
+    });
   });
 
 

@@ -1,0 +1,34 @@
+<h1>{{schema.title}} <a href="#/content-models/edit/{{schema.guid}}">Edit</a></h1>
+<h4>A type of <a href="#/content-models/new/{{schema.type}}">{{schema.type}}</a></h4>
+<p>{{schema.description}}</p>
+
+<h2>Benefits and Value</h2>
+<ul>
+  <li ng-repeat="persona in schema.benefits | orderBy:'value'">
+    <span>
+      <p>As <em>{{persona.name}}</em>, I want <em>{{persona.desire}}</em> so that <em>{{persona.rationale}}</em></p>
+      <p>Value to <em>{{persona.name}}</em>: <strong>{{persona.value}}</strong></p>
+    </span>
+    <span>
+      <img src="{{persona.image}}" alt="Image representation of {{persona.name}}">
+    </span>
+  </li>
+</ul>
+
+  <p>Total Value: <strong>{{schema.value}}</strong></p>
+  <p>Valuable to <em>{{schema.benefits.length}}</em> personas of <em>{{personas.length}}</em> total personas</p>
+
+<h2>Attributes</h2>
+<ul>
+  <li ng-repeat="attribute in schema.attributes | orderBy:'label'">
+    <strong>{{attribute.label}}</strong>
+    <p ng-bind-html="attribute.description"></p>
+    <ul>
+      <li>Total: {{attribute.total}}</li>
+      <li>Required: {{attribute.required || false}}</li>
+      <li>Input Type: {{attribute.datatype}}</li>
+      <li ng-show="attribute.formatting && attribute.formatting !== ''">Formatting: {{attribute.formatting}}</li>
+      <li>Input Limits: {{attribute.limits}}</li>
+    </ul>
+  </li>
+</ul>
