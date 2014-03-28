@@ -53,6 +53,11 @@
     $scope.personas = dataService.get('personas');
   });
 
+  intakeControllers.controller('IntakePersonasViewCtrl', function ($scope, dataService) {
+    $scope.persona = dataService.find('personas');
+    // console.log($scope.persona);
+  });
+
   //////////////////////////////
   // Form Controllers
   //////////////////////////////
@@ -137,7 +142,7 @@
         });
       });
 
-      console.log($scope.schema);
+      // console.log($scope.schema);
     });
   });
 
@@ -399,6 +404,7 @@
   intakeControllers.controller('IntakeContentModelEditCtrl', function ($scope, $routeParams, $timeout, $location, dataService, schemaService) {
     schemaService.get().then(function (schema) {
       $scope.schemaAll = schema;
+      $scope.remove = true;
 
       $scope.datatypes = schemaService.datatypes();
       $scope.personas = dataService.get('personas');
@@ -430,9 +436,9 @@
       };
 
       // Destroy a Role
-      // $scope.destroy = function () {
-      //   dataService.remove(path);
-      // };
+      $scope.destroy = function () {
+        dataService.remove('content-models');
+      };
 
       $scope.save = function () {
         if ($scope.schema.title === undefined || $scope.schema.title === '') {

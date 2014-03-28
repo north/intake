@@ -76,6 +76,13 @@
           templateUrl: 'partials/personas--edit.html',
           controller: 'IntakeFormEditCtrl'
         })
+        .when('/personas/view', {
+          redirectTo: '/personas'
+        })
+        .when('/personas/view/:guid', {
+          templateUrl: 'partials/personas--view.html',
+          controller: 'IntakePersonasViewCtrl'
+        })
         .otherwise({
           redirectTo: '/'
         });

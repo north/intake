@@ -9,7 +9,7 @@
   intakeDirectives.directive('attributedetails', function () {
     return {
       restrict: 'E',
-      templateUrl: 'partials/attribute--detail.html'
+      templateUrl: 'partials/attribute.html'
     };
   });
 
