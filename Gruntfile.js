@@ -136,6 +136,9 @@
         add: {
           cmd: 'git add .dist && git commit -m "Dist Commit"'
         },
+        delete: {
+          cmd: 'git push origin :gh-pages'
+        },
         subtree: {
           cmd: 'git subtree push --prefix .dist origin gh-pages'
         },
@@ -173,7 +176,7 @@
     });
 
     grunt.registerTask('deploy', function() {
-      grunt.task.run(['exec:add', 'exec:subtree', 'exec:remove', 'clean']);
+      grunt.task.run(['exec:delete', 'exec:add', 'exec:subtree', 'exec:remove', 'clean']);
     });
 
     grunt.registerTask('build-deploy', function() {
