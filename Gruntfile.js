@@ -133,8 +133,14 @@
       // Subtree Push
       //////////////////////////////
       exec: {
+        add: {
+          cmd: 'git add .dist && git commit -m "Dist Commit"'
+        },
         subtree: {
           cmd: 'git subtree push --prefix .dist origin gh-pages'
+        },
+        remove: {
+          cmd: 'git reset HEAD^'
         }
       }
 
