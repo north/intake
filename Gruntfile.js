@@ -91,7 +91,53 @@
           },
           tasks: ['watch', 'compass']
         }
+      },
+
+      //////////////////////////////
+      // Usemin
+      //////////////////////////////
+      useminPrepare: {
+        html: 'index.html',
+        options: {
+          dest: './.dist/'
+        }
+      },
+      usemin: {
+        html: './build/index.html',
+        options: {
+          dest: './.dist/'
+        }
+      },
+
+      //////////////////////////////
+      // Copy
+      //////////////////////////////
+      copy: {
+        build: {
+          files: [
+            {
+              expanded: true,
+              src: ['index.html', 'CNAME', 'fonts/**', 'data/**', 'partials/**'],
+              dest: './.dist/'
+            }
+          ]
+        }
+      },
+
+      //////////////////////////////
+      // Clean
+      //////////////////////////////
+      clean: ['./.dist'],
+
+      //////////////////////////////
+      // Subtree Push
+      //////////////////////////////
+      exec: {
+        subtree: {
+          cmd: 'git subtree push --prefix .dist origin gh-pages'
+        }
       }
+
     });
 
     // Match Grunt dependencies
@@ -114,6 +160,10 @@
     //////////////////////////////
     grunt.registerTask('test', function() {
       console.log('Test!');
+    });
+
+    grunt.registerTask('build', function() {
+      grunt.task.run(['clean', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'copy:build', 'usemin']);
     });
 
   };

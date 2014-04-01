@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Intake</title>
+  <!-- build:css css/style.css -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- endbuild -->
+  <!-- build:js js/intake.js -->
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
@@ -15,11 +18,12 @@
   <script src="js/directives.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/app.js"></script>
+  <!-- endbuild -->
 </head>
 <body>
   <header ng-controller="IntakeHeaderCtrl">
     <span>
-      <h1><a href="/"><span>Intake</span> <span>Center</span></a></h1>
+      <h1><a href="#/"><span>Intake</span> <span>Center</span></a></h1>
       <p>A Content Strategy companion to <a href="http://pointnorth.io" class="north">North</a></p>
     </span>
 
@@ -36,6 +40,8 @@
     </nav>
   </header>
   <main ng-view class="_main"></main>
+
+  <link rel="stylesheet" href="/css/fonts.css">
 
 </body>
 </html>
