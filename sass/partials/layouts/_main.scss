@@ -1,0 +1,133 @@
+@import "main/variables";
+@import "main/mixins";
+@import "main/extendables";
+
+._main {
+  max-width: $max-width;
+  margin: 0 auto;
+
+  // Primary
+  &--primary {
+    padding: $padding;
+    @include breakpoint(692px) {
+      width: 60%;
+      float: left;
+    }
+    @include breakpoint(951px) {
+      width: 1 / 1.618 * 100%;
+    }
+  }
+
+  // Secondary
+  &--secondary {
+    padding: $padding;
+    @include breakpoint(692px) {
+      width: 40%;
+      float: right;
+    }
+    @include breakpoint(951px) {
+      width: (1 - 1 / 1.618) * 100%;
+    }
+  }
+
+  // Half
+  &--half {
+    @include breakpoint(692px) {
+      width: 50%;
+      float: left;
+
+      &:nth-of-type(2n) {
+        float: right;
+      }
+    }
+  }
+}
+
+// .__main {
+//   clear: both;
+//   position: relative;
+//   max-width: $nav-sideline;
+//   margin: 0 auto;
+// }
+
+// .js {
+//   .nav {
+//     position: relative;
+//   }
+
+//   [data-target] {
+//     @include single-transition(opacity .5s);
+//     @include transition-delay(0s);
+//   }
+
+//   [data-target="false"] {
+//     height: 0;
+//     opacity: 0;
+//     overflow: hidden;
+//   }
+
+//   [data-target="true"] {
+//     opacity: 1;
+//     height: auto;
+//   }
+// }
+
+// .nav {
+//   font-size: 1em;
+//   margin-bottom: .75em;
+
+//   &--sub-sections {
+//     height: 0;
+//     overflow: hidden;
+//     margin-left: .5rem;
+//     font-size: 1em;
+//     border-left: 2px solid rgba($white, .5);
+//     @include breakpoint($nav-inline) {
+//       border-color: rgba($secondary, .5);
+//     }
+
+//     padding-left: .5em;
+
+//     [data-active] & {
+//       height: auto;
+//     }
+//   }
+
+//   &--link {
+//     font-weight: normal;
+//     text-decoration: none;
+//     text-transform: lowercase;
+//     @include breakpoint($nav-inline) {
+//       color: $secondary;
+//     }
+
+//   }
+
+//   @include breakpoint(max-width ($nav-inline - 1px)) {
+//     // box-shadow: inset 0 0 10px 1px rgba($black, .3);
+//     // padding-top: 10px;
+//     // padding-bottom: 10px;
+//     // overflow: hidden;
+//     background: $primary;
+
+
+//     &--link {
+//       color: $white;
+//     }
+//     padding-left: .5rem;
+//     padding-right: .5rem;
+//     padding: .75em;
+//     padding-bottom: .75em;
+//   }
+
+//   $border-size: 1px;
+
+//   @include breakpoint($nav-inline) {
+//     background: $background;
+//     width: 320px;
+//     float: left;
+//     margin: .5rem;
+//     z-index: 5;
+//     border-right: $border-size solid $thin;
+//   }
+// }

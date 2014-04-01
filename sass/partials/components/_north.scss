@@ -1,0 +1,21 @@
+.north {
+  @extend %icon;
+  font-size: 1.25em;
+
+  color: $primary;
+  text-transform: uppercase;
+  position: relative;
+  text-decoration: none;
+
+  text-align: left;
+  display: inline-block;
+
+  font-family: 'homestead-regular', $serif;
+
+  &:before {
+    @extend %icon;
+    content: 'north';
+    padding-right: .16em;
+    @include translateY(.119402985em);
+  }
+}

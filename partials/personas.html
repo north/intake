@@ -4,11 +4,9 @@
     <a href="#/personas/new">Add Persona</a>
   </li>
   <li ng-repeat="persona in personas">
+    <img class="form--imagedrop" src="{{persona.image}}" alt="Headshot">
     <span>
-      <img src="{{persona.image}}" alt="Headshot">
-    </span>
-    <span>
-      <h3>{{persona.name}} <a href="#/personas/view/{{persona.guid}}">View</a> <a href="#/personas/edit/{{persona.guid}}">Edit</a></h3>
+      <h3>{{persona.name}} <a class="form--view" href="#/personas/view/{{persona.guid}}">View</a> <a class="form--edit" href="#/personas/edit/{{persona.guid}}">Edit</a></h3>
       <p>{{persona.motivator}}</p>
     </span>
 

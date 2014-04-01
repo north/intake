@@ -1,0 +1,12 @@
+@include font-face('north', (
+  'eot': 'north/north.eot',
+  'woff': 'north/north.woff',
+  'ttf': 'north/north.ttf',
+  'svg': 'north/north.svg'
+), $inline-woff: true);
+
+@include font-face('homestead-regular', (
+  'eot': 'homestead/homestead-regular.eot',
+  'woff': 'homestead/homestead-regular.woff',
+  'ttf': 'homestead/homestead-regular.ttf'
+), $inline-woff: true);

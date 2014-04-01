@@ -1,0 +1,13 @@
+$primary: #5ea9d0;
+$black: black($primary);
+$white: white($primary);
+$secondary: secondary($primary);
+$tertiary: #ea786a;
+
+$background: $white;
+$foreground: $black;
+$form: mix($white, $black, 97.5%);
+$thin: mix($white, $black, 80%);
+
+$px: .0625em;
+$padding: .25rem .5rem;

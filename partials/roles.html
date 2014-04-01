@@ -1,11 +1,13 @@
-<input type="search" ng-model="search" placeholder="Search">
-<ul class="roles">
-  <li><a href="#/roles/new">Add New Role</a></li>
-  <li class="roles--display" ng-repeat="role in project.roles | filter:search | orderBy:'name'">
-    <span>{{role.role}}</span>
-    <span>{{role.name}}</span>
-    <span><a href="mailto:{{role.email}}">Email</a></span>
-    <span>{{role.description}}</span>
-    <span><a href="#/roles/edit/{{role.guid}}">Edit</a></span>
-  </li>
-</ul>
+<div class="_main--primary">
+  <input type="search" ng-model="search" placeholder="Search">
+  <a class="form--save" href="#/roles/new">Add New Role</a>
+  <ul class="roles _columns">
+    <li class="role _columns--flow-item" ng-repeat="role in project.roles | filter:search | orderBy:'name'">
+      <span class="role--role">{{role.role}} <a href="#/roles/edit/{{role.guid}}" class="form--edit">Edit</a></span>
+      <span class="role--name">{{role.name}} <a href="mailto:{{role.email}}" class="role--email">Email</a></span>
+      <span class="role--description">{{role.description}}</span>
+    </li>
+  </ul>
+
+</div>
+

@@ -1,0 +1,50 @@
+//////////////////////////////
+// Role Component
+//
+// The partial and folder structure for this component should be as follows:
+// _role.scss
+// role (folder)
+//   _extends.scss
+//   _mixins.scss
+//   _variables.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component aspect: @{component--aspect}
+//  - End styling block for specific component aspect:   {component--aspect}@
+//////////////////////////////
+
+@import "role/variables";
+@import "role/mixins";
+@import "role/extends";
+
+//////////////////////////////
+// @{role}
+// Styling for Role Component
+.role {
+  &--role,
+  &--name,
+  &--description {
+    line-height: 1.25em;
+    display: block;
+  }
+
+  &--role {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  &--description {
+    font-size: .85em;
+  }
+
+  &--email {
+    @extend %icon;
+    font-size: .75em;
+  }
+}
+// {role}@
+//////////////////////////////
+

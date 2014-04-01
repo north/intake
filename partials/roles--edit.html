@@ -1,38 +1,40 @@
-<form name="rolesEdit">
-  <div>
-    <label>Role</label>
-    <input type="text" name="role" ng-model="item.role" required>
-    <span ng-show="rolesEdit.role.$error.required && !rolesEdit.role.$pristine">
-        Required {{rolesEdit.role.$pristine}}</span>
+<form name="rolesEdit" class="form--STYLED _main--primary">
+  <div class="_columns">
+    <div class="_columns--flow-item">
+      <label>Role</label>
+      <input type="text" tabindex="1" name="role" ng-model="item.role" required>
+      <span ng-show="rolesEdit.role.$error.required && !rolesEdit.role.$pristine">
+          Required {{rolesEdit.role.$pristine}}</span>
+    </div>
+
+    <div class="_columns--flow-item">
+      <label>Name</label>
+      <input type="text" tabindex="3" name="name" ng-model="item.name" required>
+      <span ng-show="rolesEdit.name.$error.required && !rolesEdit.name.$pristine">
+          Required {{rolesEdit.name.$pristine}}</span>
+    </div>
+
+    <div class="_columns--flow-item">
+      <label>Email</label>
+      <input type="email" tabindex="2" name="email" ng-model="item.email" required>
+      <span ng-show="rolesEdit.email.$error.required && !rolesEdit.email.$pristine">
+          Required {{rolesEdit.email.$pristine}}</span>
+          <span ng-show="rolesEdit.email.$error.email && !rolesEdit.email.$pristine">
+          Valid email required {{rolesEdit.email.$pristine}}</span>
+    </div>
+
+    <div class="_columns--flow-item">
+      <label>Description</label>
+      <input type="text" tabindex="4" name="description" ng-model="item.description" required>
+      <span ng-show="rolesEdit.description.$error.required && !rolesEdit.description.$pristine">
+          Required {{rolesEdit.description.$pristine}}</span>
+    </div>
   </div>
 
-  <div>
-    <label>Name</label>
-    <input type="text" name="name" ng-model="item.name" required>
-    <span ng-show="rolesEdit.name.$error.required && !rolesEdit.name.$pristine">
-        Required {{rolesEdit.name.$pristine}}</span>
-  </div>
-
-  <div>
-    <label>Email</label>
-    <input type="email" name="email" ng-model="item.email" required>
-    <span ng-show="rolesEdit.email.$error.required && !rolesEdit.email.$pristine">
-        Required {{rolesEdit.email.$pristine}}</span>
-        <span ng-show="rolesEdit.email.$error.email && !rolesEdit.email.$pristine">
-        Valid email required {{rolesEdit.email.$pristine}}</span>
-  </div>
-
-  <div>
-    <label>Description</label>
-    <input type="text" name="description" ng-model="item.description" required>
-    <span ng-show="rolesEdit.description.$error.required && !rolesEdit.description.$pristine">
-        Required {{rolesEdit.description.$pristine}}</span>
-  </div>
-
-  <div>
-    <a href="#/roles">Cancel</a>
-    <button ng-click="save()" ng-disabled="rolesEdit.$invalid">Save</button>
-    <button ng-click="destroy()" ng-show="remove">Delete</button>
+  <div class="_main--half">
+    <a href="#/roles" tabindex="5" class="form--cancel">Cancel</a>
+    <button class="form--save" tabindex="6" ng-click="save()" ng-disabled="rolesEdit.$invalid">Save</button>
+    <button class="form--destroy" tabindex="7" ng-click="destroy()" ng-show="remove">Delete</button>
   </div>
 
 </form>

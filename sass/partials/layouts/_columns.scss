@@ -1,0 +1,37 @@
+//////////////////////////////
+// Columns Layout
+//
+// The partial and folder structure for this layout should be as follows:
+// _columns.scss
+// columns (folder)
+//   _extends.scss
+//   _mixins.scss
+//   _variables.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base layout: @{layout}
+//  - End styling block for base layout:   {layout}@
+//
+//  - Start styling block for specific layout aspect: @{layout--aspect}
+//  - End styling block for specific layout aspect:   {layout--aspect}@
+//////////////////////////////
+
+@import "columns/variables";
+@import "columns/mixins";
+@import "columns/extends";
+
+//////////////////////////////
+// @{columns}
+// Styling for Columns Layout
+._columns {
+  @include breakpoint(692px) {
+    @include column-count(2);
+  }
+
+  &--flow-item {
+    @include break-inside(avoid)
+  }
+}
+// {columns}@
+//////////////////////////////
+
