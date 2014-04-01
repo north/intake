@@ -103,7 +103,7 @@
         }
       },
       usemin: {
-        html: './build/index.html',
+        html: './.dist/index.html',
         options: {
           dest: './.dist/'
         }
