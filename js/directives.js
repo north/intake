@@ -56,6 +56,7 @@
         var dropZone = document.getElementById('drop_zone');
         if (scope.image) {
           dropZone.style.backgroundImage = 'url(' + scope.image + ')';
+          dropZone.setAttribute('data-state', 'uploaded');
         }
         var opts = {
           readAsMap: {
