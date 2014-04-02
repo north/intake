@@ -1,27 +1,6 @@
 @import "toolkit";
 
 //////////////////////////////
-// Homestead
-//////////////////////////////
-@include font-face('homestead-one', (
-  'eot': 'homestead/homestead-one.eot',
-  'woff': 'homestead/homestead-one.woff',
-  'ttf': 'homestead/homestead-one.ttf'
-), $inline-woff: true);
-
-@include font-face('homestead-two', (
-  'eot': 'homestead/homestead-two.eot',
-  'woff': 'homestead/homestead-two.woff',
-  'ttf': 'homestead/homestead-two.ttf'
-), $inline-woff: true);
-
-@include font-face('homestead-three', (
-  'eot': 'homestead/homestead-three.eot',
-  'woff': 'homestead/homestead-three.woff',
-  'ttf': 'homestead/homestead-three.ttf'
-), $inline-woff: true);
-
-//////////////////////////////
 // PT Sans
 //////////////////////////////
 @include font-face('pt', (

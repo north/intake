@@ -1,10 +1,11 @@
-$primary: #a1d962;
-$black: black($primary);
-$white: white($primary);
-$secondary: secondary($primary);
-$tertiary: #ea786a;
+$primary: #fede32;
+$black: #3c3c3c;
+$hard: #101010;
+$white: #fff;
+$secondary: #592ad5;
+$tertiary: #fe4432;
 
-$background: $white;
+$background: $primary;
 $foreground: $black;
 $form: mix($white, $black, 97.5%);
 $thin: mix($white, $black, 80%);

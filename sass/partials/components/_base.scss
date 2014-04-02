@@ -24,12 +24,6 @@ body {
     }
   }
 
-  h1, h2 {
-    @extend %base--header-border;
-
-
-  }
-
   a {
    @extend %base--a;
   }

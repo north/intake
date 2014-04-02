@@ -5,8 +5,20 @@
   'svg': 'north/north.svg'
 ), $inline-woff: true);
 
-@include font-face('homestead-regular', (
+@include font-face('homestead', (
   'eot': 'homestead/homestead-regular.eot',
   'woff': 'homestead/homestead-regular.woff',
   'ttf': 'homestead/homestead-regular.ttf'
+), $inline-woff: true);
+
+@include font-face('ostrich-wordmark', (
+  'eot': 'ostrich/ostrichsans-bold.eot',
+  'woff': 'ostrich/ostrichsans-bold.woff',
+  'ttf': 'ostrich/ostrichsans-bold.ttf'
+), $inline-woff: true);
+
+@include font-face('ostrich', (
+  'eot': 'ostrich/ostrichsans-black.eot',
+  'woff': 'ostrich/ostrichsans-black.woff',
+  'ttf': 'ostrich/ostrichsans-black.ttf'
 ), $inline-woff: true);

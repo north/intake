@@ -43,13 +43,14 @@
   width: 100%;
   line-height: 1em;
   word-wrap: break-word;
-  color: $secondary;
+  color: $black;
   border: none;
+  font-family: 'ostrich', $sans;
 }
 
-%base--header-border {
-  border-bottom: $border;
-}
+// %base--header-border {
+//   border-bottom: $border;
+// }
 
 %base--h1 {
   @include breakpoint($nav-sideline) {
@@ -61,13 +62,14 @@
 
 %base--a {
   text-decoration: none;
-  color: $primary;
-  border-bottom: 1px solid mix($white, $primary, 75%);
-
-  &:hover {
-    color: $secondary;
-    border-color: mix($white, $secondary, 75%)
-  }
+  color: $secondary;
+  @include background-image(
+    linear-gradient(bottom, $primary 75%, $secondary 75%)
+  );
+  text-shadow: (1 * $px) (1 * $px) 0 $primary, (-1 * $px) 0 0 $primary;
+  background-repeat: repeat-x;
+  background-size: (2 * $px) (3 * $px);
+  background-position: 0 1.125em;
 }
 
 %base--list {

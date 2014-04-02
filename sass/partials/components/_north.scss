@@ -2,7 +2,7 @@
   @extend %icon;
   font-size: 1.25em;
 
-  color: $primary;
+  color: $black;
   text-transform: uppercase;
   position: relative;
   text-decoration: none;
@@ -14,6 +14,7 @@
 
   &:before {
     @extend %icon;
+    color: $hard;
     content: 'north';
     padding-right: .16em;
     @include translateY(.119402985em);

@@ -42,7 +42,8 @@
       // margin-top: -2em;
     }
 
-    [ng-click="IntakeDownload()"] {
+    [ng-click="IntakeDownload()"],
+    [name="importFileStart"] {
       float: right;
       @include button($secondary);
       @include breakpoint(543px) {
@@ -59,21 +60,9 @@
         // margin-bottom: -.15em;
       }
     }
-    [name="importFileStart"] {
-      float: right;
-      @include button($primary);
-      @include breakpoint(543px) {
-        font-size: .75em;
-      }
-      display: inline-block;
-      &:before {
-        @extend %icon;
-        content: 'import';
-        color: $secondary;
-        padding-right: .5em;
-        display: inline-block;
-        // margin-bottom: -.15em;
-      }
+
+    [name="importFileStart"]:before {
+      content: 'import';
     }
   }
 
@@ -88,9 +77,11 @@
   }
 
   &--nav-item {
-    color: $secondary;
+    font-family: 'ostrich', $sans;
+    color: $hard;
     text-decoration: none;
     margin: 0 .5em;
+    letter-spacing: .1em;
   }
 }
 
@@ -113,37 +104,19 @@
 
   text-decoration: none;
   display: inline-block;
-  color: $secondary;
+  color: $hard;
 
-  font-family: 'homestead-regular', $serif;
+  font-family: 'ostrich-wordmark', $serif;
 
   @extend %icon;
   text-transform: uppercase;
-  font-weight: normal;
-  position: relative;
 
-  @include breakpoint(2256px) {
-    font-family: 'homestead-one';
-
-    &:before {
-      content: 'intake.center';
-      text-transform: uppercase;
-      font-family: 'homestead-two', $serif;
-      color: mix($black, $primary, 10%);
-      position: absolute;
-      top: -0.065em;
-      left: 0;
-    }
-    &:after {
-      content: 'intake.center';
-      text-transform: uppercase;
-      font-family: 'homestead-three', $serif;
-      color: mix($white, $primary, 10%);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+  &--a {
+    margin-left: -.10em;
   }
+}
 
-
+span[class*="wordmark--"] {
+  display: inline-block;
+  margin-right: .1em;
 }
