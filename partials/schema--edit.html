@@ -23,7 +23,7 @@
   <div ng-show="step === 'attributes'">
     <input type="search" ng-model="search.attributes" placeholder="Search">
     <div class="_columns">
-      <label ng-repeat="property in properties | filter:search.attributes | orderBy:'label'">
+      <label class="_columns--flow-item form--checkbox" ng-repeat="property in properties | filter:search.attributes | orderBy:'label'">
         <input type="checkbox" ng-click="detailClick(property.id)" id="details--{{property.id}}" ng-disabled="detailsActive" checklist-model="selected.attributes" checklist-value="property.id"> {{property.label}}
       </label>
     </div>
@@ -39,10 +39,10 @@
 
 
   <div>
-    <a href="#/schemaEdits">Cancel</a>
-    <button ng-click="back()" ng-disabled="first || detailsActive || benefitsActive">Back</button>
-    <button ng-click="save()" ng-disabled="schemaEdit.$invalid || detailsActive || benefitsActive">{{button}}</button>
-    <button ng-click="destroy()" ng-show="remove">Delete</button>
+    <a class="form--cancel" href="#/content-models">Cancel</a>
+    <button class="form--cancel" ng-click="back()" ng-disabled="first || detailsActive || benefitsActive">Back</button>
+    <button class="form--save" ng-click="save()" ng-disabled="schemaEdit.$invalid || detailsActive || benefitsActive">{{button}}</button>
+    <button class="form--destroy" ng-click="destroy()" ng-show="remove">Delete</button>
   </div>
 
 </form>

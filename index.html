@@ -21,23 +21,25 @@
   <!-- endbuild -->
 </head>
 <body>
-  <header ng-controller="IntakeHeaderCtrl">
-    <span>
-      <h1><a href="#/"><span>Intake</span> <span>Center</span></a></h1>
-      <p>A Content Strategy companion to <a href="http://pointnorth.io" class="north">North</a></p>
+  <header ng-controller="IntakeHeaderCtrl" class="banner">
+    <span class="banner--name">
+      <h1><a href="#/" class="wordmark">Intake.Center</a></h1>
+      <footer><span class="banner--companion">A Content Strategy companion to <a href="http://pointnorth.io" class="north">North</a></span></footer>
     </span>
 
-    <h3>{{project.name || '&nbsp'}}</h3>
-    <div class="save">
-      <button ng-click="IntakeDownload()">Export</button>
-      <import></import>
+    <div class="banner--wrapper">
+      <h3 class="banner--project">{{project.name || '&nbsp'}}</h3>
+      <div class="banner--actions">
+        <button ng-click="IntakeDownload()">Export</button>
+        <import></import>
+      </div>
+      <nav role="navigation" class="banner--nav">
+        <a class="banner--nav-item" href="#/roles">Roles</a>
+        <a class="banner--nav-item" href="#/vision">Vision</a>
+        <a class="banner--nav-item" href="#/personas">Personas</a>
+        <a class="banner--nav-item" href="#/content-models">Content Models</a>
+      </nav>
     </div>
-    <nav role="navigation">
-      <a href="#/roles">Roles</a>
-      <a href="#/vision">Vision</a>
-      <a href="#/personas">Personas</a>
-      <a href="#/content-models">Content Models</a>
-    </nav>
   </header>
   <main ng-view class="_main"></main>
 

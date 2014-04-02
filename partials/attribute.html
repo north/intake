@@ -28,6 +28,6 @@
   <input type="text" ng-model="detail.formatting">
   <br>
 
-  <button ng-click="detailCancel(detail.id)">Cancel</button>
-  <button ng-click="detailSave(detail.id)" ng-disabled="attributeDetail.$invalid">Save</button>
+  <button class="form--cancel" ng-click="detailCancel(detail.id)">Cancel</button>
+  <button class="form--save" ng-click="detailSave(detail.id)" ng-disabled="attributeDetail.$invalid">Save</button>
 </form>

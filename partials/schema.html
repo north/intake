@@ -1,10 +1,11 @@
-<h2>Content Models</h2>
-
-<ul class="schemas">
-  <li><a href="#/content-models/new">Add New Content Model</a></li>
-  <li class="schemas--display" ng-repeat="schema in schemas | orderBy:'value'">
-    <h2>{{schema.title}} <a href="#/content-models/view/{{schema.guid}}">View</a> <a href="#/content-models/edit/{{schema.guid}}">Edit</a></h2>
-    <p>{{schema.description}}</p>
-    <small>Total Value: {{schema.value}} | Valuable to: {{schema.benefits.length}} / {{personas.length}}</small>
-  </li>
-</ul>
+<div class="_main--primary">
+  <input type="search" ng-model="search" placeholder = "Search">
+  <a class="form--save" href="#/content-models/new">Add New Content Model</a>
+  <ul class="schemas">
+    <li class="schemas--display" ng-repeat="schema in schemas | orderBy:'value'">
+      <h2 class="role--role">{{schema.title}} <a class="form--view" href="#/content-models/view/{{schema.guid}}">View</a> <a class="form--edit" href="#/content-models/edit/{{schema.guid}}">Edit</a></h2>
+      <small class="role--name">Total Value: {{schema.value}} | Valuable to: {{schema.benefits.length}} / {{personas.length}}</small>
+      <p class="role--description">{{schema.description}}</p>
+    </li>
+  </ul>
+</div>

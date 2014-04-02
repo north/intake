@@ -1,14 +1,14 @@
+<div class="_main--primary">
+  <input type="search" ng-model="search" placeholder="Search">
+  <a class="form--save" href="#/personas/new">Add Persona</a>
+  <ul>
+    <li ng-repeat="persona in personas">
+      <img class="form--imagedrop" src="{{persona.image}}" alt="Headshot">
+      <span>
+        <h3>{{persona.name}} <a class="form--view" href="#/personas/view/{{persona.guid}}">View</a> <a class="form--edit" href="#/personas/edit/{{persona.guid}}">Edit</a></h3>
+        <p>{{persona.motivator}}</p>
+      </span>
 
-<ul>
-  <li>
-    <a href="#/personas/new">Add Persona</a>
-  </li>
-  <li ng-repeat="persona in personas">
-    <img class="form--imagedrop" src="{{persona.image}}" alt="Headshot">
-    <span>
-      <h3>{{persona.name}} <a class="form--view" href="#/personas/view/{{persona.guid}}">View</a> <a class="form--edit" href="#/personas/edit/{{persona.guid}}">Edit</a></h3>
-      <p>{{persona.motivator}}</p>
-    </span>
-
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
