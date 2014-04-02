@@ -2,6 +2,7 @@
 require 'compass/import-once/activate'
 require 'breakpoint'
 require 'singularitygs'
+require 'singularity-extras'
 require 'toolkit'
 require 'modular-scale'
 require 'color-schemer'
