@@ -73,6 +73,10 @@
     }
   }
 
+  &--checkbox {
+    display: block;
+  }
+
   @include breakpoint(692px) {
     &--floated {
       padding-left: 1em;

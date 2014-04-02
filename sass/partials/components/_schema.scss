@@ -1,0 +1,91 @@
+//////////////////////////////
+// Schema Component
+//
+// The partial and folder structure for this component should be as follows:
+// _schema.scss
+// schema (folder)
+//   _extends.scss
+//   _mixins.scss
+//   _variables.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component aspect: @{component--aspect}
+//  - End styling block for specific component aspect:   {component--aspect}@
+//////////////////////////////
+
+@import "schema/variables";
+@import "schema/mixins";
+@import "schema/extends";
+
+//////////////////////////////
+// @{schema}
+// Styling for Schema Component
+.schema {
+  &--benefit {
+    @include clearfix;
+  }
+
+  &--title {
+    @extend %base--h1;
+  }
+
+  &--heading {
+    @extend %base--h3;
+    line-height: 1.618em;
+  }
+
+  &--subtype {
+    @extend %base--h4;
+  }
+
+  &--section {
+    padding: .5em 0;
+    border-bottom: 1px solid $thin;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &--details {
+    margin-left: 1em;
+  }
+
+  &--attribute {
+    padding: .5em 0;
+    border-bottom: 1px dashed $thin;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &-name {
+      @extend %base--strong;
+    }
+
+    &-description {
+      font-size: .75em;
+    }
+
+    em {
+      @extend %base--em;
+    }
+  }
+
+  @include layout(100px 1, .5em, 'calc') {
+    &--benefit-description {
+      @include grid-span(1, 2);
+    }
+
+    &--benefit-image {
+      @include grid-span(1, 1);
+    }
+  }
+
+}
+// {schema}@
+//////////////////////////////
+

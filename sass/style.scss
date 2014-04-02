@@ -28,6 +28,8 @@ $browser-minimum-versions: (
 @import "compass/reset";
 
 @import "breakpoint";
+@import "singularitygs";
+@import "singularity-extras/outputs";
 @import "toolkit";
 @import "toolkit/kickstart";
 
@@ -43,7 +45,8 @@ $browser-minimum-versions: (
 @import "partials/components/north";
 @import "partials/components/role";
 @import "partials/components/message";
-// @import "partials/components/banner";
+@import "partials/components/banner";
+@import "partials/components/schema";
 // @import "partials/components/footer";
 // @import "partials/components/prism-okaidia";
 
