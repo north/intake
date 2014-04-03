@@ -64,13 +64,17 @@
 %base--a {
   text-decoration: none;
   color: $secondary;
-  @include background-image(
-    linear-gradient(bottom, $primary 75%, $secondary 75%)
-  );
-  text-shadow: (1 * $px) (1 * $px) 0 $primary, (-1 * $px) 0 0 $primary;
-  background-repeat: repeat-x;
-  background-size: (2 * $px) (3 * $px);
-  background-position: 0 1.125em;
+
+  &:not(.form--view) {
+    @include background-image(
+      linear-gradient(bottom, $primary 75%, $secondary 75%)
+    );
+    text-shadow: (1 * $px) (1 * $px) 0 $primary, (-1 * $px) 0 0 $primary;
+    background-repeat: repeat-x;
+    background-size: (2 * $px) (3 * $px);
+    background-position: 0 1.125em;
+  }
+
 }
 
 %base--list {
@@ -108,7 +112,7 @@
 }
 
 %base--p {
-  margin: 1rem 0;
+  margin: .5rem 0;
 }
 
 %base--blockquote {

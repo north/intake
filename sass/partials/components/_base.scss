@@ -24,6 +24,10 @@ body {
     }
   }
 
+  > h2:first-child {
+    padding-top: 0;
+  }
+
   a {
    @extend %base--a;
   }
@@ -81,6 +85,11 @@ body {
 
   img {
     @extend %base--image;
+  }
+
+  footer {
+    font-size: .75em;
+    line-height: 1em;
   }
 }
 

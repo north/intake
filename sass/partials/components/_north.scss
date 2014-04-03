@@ -12,6 +12,13 @@
 
   font-family: 'homestead-regular', $serif;
 
+  -webkit-transition: -webkit-transform .15s ease-in-out;
+  transition: transform .15s ease-in-out;
+
+  &:hover {
+    @include scale(1.05);
+  }
+
   &:before {
     @extend %icon;
     color: $hard;

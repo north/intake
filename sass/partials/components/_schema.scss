@@ -24,6 +24,8 @@
 // @{schema}
 // Styling for Schema Component
 .schema {
+
+
   &--benefit {
     @include clearfix;
   }
@@ -88,6 +90,31 @@
     }
   }
 
+}
+
+#details--attributes,
+#details--benefit {
+  margin-bottom: 1em;
+  display: block;
+  @include clearfix;
+  border: 1px solid $secondary;
+  padding: $padding;
+}
+
+#details--attributes {
+  h3 {
+    @extend %base--h4;
+    @extend %base--header;
+    margin-bottom: .25em;
+  }
+  small {
+    font-size: .75em;
+    line-height: 1em;
+  }
+}
+
+section[schema-desc] {
+  clear: both;
 }
 // {schema}@
 //////////////////////////////
