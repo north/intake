@@ -175,12 +175,12 @@
       grunt.task.run(['clean', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'copy:build', 'usemin']);
     });
 
-    grunt.registerTask('deploy', function() {
+    grunt.registerTask('github', function() {
       grunt.task.run(['exec:delete', 'exec:add', 'exec:subtree', 'exec:remove', 'clean']);
     });
 
-    grunt.registerTask('build-deploy', function() {
-      grunt.task.run(['build', 'deploy']);
+    grunt.registerTask('deploy', function() {
+      grunt.task.run(['build', 'github']);
     });
 
   };
