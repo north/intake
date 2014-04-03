@@ -1,8 +1,7 @@
-<h2 ng-show="type.label">New {{type.label}}</h2>
-<h2 ng-hide="type.label">Edit {{schema.title}}</h2>
-
 <form name="schemaEdit" class="_main--primary">
-  <h3>{{stepName}}</h3>
+  <h2 class="schema--heading" ng-show="type.label">New {{type.label}}</h2>
+  <h2 class="schema--heading" ng-hide="type.label">Edit {{schema.title}}</h2>
+  <h3 class="schema--subtype">{{stepName}}</h3>
   <!-- Basic Information -->
   <div ng-show="step === 'basic'">
     Title:
@@ -50,4 +49,5 @@
 <div class="_main--secondary">
   <benefits id="details--benefit" ng-show="benefitsActive" ng-controller="IntakeBenefitCtrl"></benefits>
   <attributedetails id="details--attributes" ng-show="detailsActive" ng-controller="IntakeDetailCtrl"></attributedetails>
+  <section schema-desc class="base--STYLED"></section>
 </div>

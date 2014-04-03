@@ -33,9 +33,10 @@
 
 </form>
 
-<div class="_main--secondary">
+<aside class="_main--secondary">
   <span class="message--ERROR" ng-show="personaEdit.name.$error.required && !personaEdit.name.$pristine">Name field is <em>required</em></span>
   <span class="message--ERROR" ng-show="personaEdit.uses.$error.required && !personaEdit.uses.$pristine">Typical use field is required</span>
   <span class="message--ERROR" ng-show="personaEdit.motivator.$error.required && !personaEdit.motivator.$pristine">Motivator for use field is <em>required</em></span>
   <span class="message--ERROR" ng-show="personaEdit.pains.$error.required && !personaEdit.pains.$pristine">Pain points field is <em>required</em></span>
-</div>
+  <section personas-desc class="base--STYLED"></section>
+</aside>

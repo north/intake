@@ -6,6 +6,33 @@
     'intakeFactories'
   ]);
 
+  //////////////////////////////
+  // Descriptions
+  //////////////////////////////
+  intakeDirectives.directive('rolesDesc', function () {
+    return {
+      restrict: 'A',
+      templateUrl: 'partials/roles--desc.html'
+    };
+  });
+
+  intakeDirectives.directive('personasDesc', function () {
+    return {
+      restrict: 'A',
+      templateUrl: 'partials/personas--desc.html'
+    };
+  });
+
+  intakeDirectives.directive('schemaDesc', function () {
+    return {
+      restrict: 'A',
+      templateUrl: 'partials/schema--desc.html'
+    };
+  });
+
+  //////////////////////////////
+  // Schema Details
+  //////////////////////////////
   intakeDirectives.directive('attributedetails', function () {
     return {
       restrict: 'E',
@@ -20,34 +47,40 @@
     };
   });
 
+  //////////////////////////////
+  // Import
+  //////////////////////////////
   intakeDirectives.directive('import', ['localStorageService', function (localStorageService) {
-      return {
-        restrict: 'E',
-        template: '<button name="importFileStart">Import</button> <input type="file" id="importFileUpload" name="importFileUpload" style="display: none">',
-        link: function (scope, elem) {
-          elem.bind('click', function () {
-            var fileUpload = document.getElementById('importFileUpload');
-            fileUpload.click();
-            // console.log(fileUpload);
-          });
+    return {
+      restrict: 'E',
+      template: '<button name="importFileStart">Import</button> <input type="file" id="importFileUpload" name="importFileUpload" style="display: none">',
+      link: function (scope, elem) {
+        elem.bind('click', function () {
+          var fileUpload = document.getElementById('importFileUpload');
+          fileUpload.click();
+          // console.log(fileUpload);
+        });
 
-          elem.bind('change', function (e) {
-            var file = e.target.files[0];
-            var reader = new FileReader();
+        elem.bind('change', function (e) {
+          var file = e.target.files[0];
+          var reader = new FileReader();
 
-            reader.onloadend = function (evt) {
-              var importData = JSON.parse(evt.target.result);
+          reader.onloadend = function (evt) {
+            var importData = JSON.parse(evt.target.result);
 
-              localStorageService.add('project', importData.project || {});
-              location.reload(true);
-            };
+            localStorageService.add('project', importData.project || {});
+            location.reload(true);
+          };
 
-            reader.readAsText(file);
-          });
-        }
-      };
-    }]);
+          reader.readAsText(file);
+        });
+      }
+    };
+  }]);
 
+  //////////////////////////////
+  // Image Drop
+  //////////////////////////////
   intakeDirectives.directive('imagedrop', function () {
     return {
       restrict: 'E',

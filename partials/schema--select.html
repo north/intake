@@ -1,19 +1,22 @@
-<div>
-  <label for="">Search:</label>
-  <input type="search" ng-model="search.label">
-</div>
+<article class="_main--primary">
+  <div>
+    <label for="">Search:</label>
+    <input type="search" ng-model="search.label">
+  </div>
 
-<div>
-  <label for="">Is A Type Of</label>
-  <select name="" id="" ng-model="search.subtype">
-    <option value="{{type.id}}" ng-repeat="type in parents">{{type.label}}</option>
-  </select>
-</div>
+  <div>
+    <label for="">Is A Type Of</label>
+    <select name="" id="" ng-model="search.subtype">
+      <option value="{{type.id}}" ng-repeat="type in parents">{{type.label}}</option>
+    </select>
+  </div>
 
-<ul>
-  <li ng-repeat="type in types | schemaTypeFilter:{label: search.label, subtype: search.subtype}">
-    <h4><a href="#/content-models/new/{{type.id}}">{{type.label}}</a></h4>
-    <small ng-if="type.parents">Child of <em>{{type.parents}}</em></small><br>
-    <small ng-if="type.children">Parent of <em>{{type.children}}</em></small>
-  </li>
-</ul>
+  <ul>
+    <li ng-repeat="type in types | schemaTypeFilter:{label: search.label, subtype: search.subtype}">
+      <h4><a href="#/content-models/new/{{type.id}}">{{type.label}}</a></h4>
+      <small ng-if="type.parents">Child of <em>{{type.parents}}</em></small><br>
+      <small ng-if="type.children">Parent of <em>{{type.children}}</em></small>
+    </li>
+  </ul>
+</article>
+<aside schema-desc class="base--STYLED _main--secondary"></aside>
