@@ -26,18 +26,20 @@
 .form {
   &--cancel {
     float: left;
-    @include button($thin);
+    @include button($white);
   }
   &--save {
     float: right;
-    @include button($primary);
+    @include button($secondary);
+    color: $white;
     &[disabled] {
-      background: mix($white, $primary, 70%);
+      background: mix($white, $secondary, 70%);
       cursor: not-allowed;
     }
   }
   &--destroy {
     float: right;
+    color: $white;
     @include button($tertiary);
   }
   &--edit,
@@ -93,7 +95,6 @@
 }
 // {form}@
 //////////////////////////////
-
 
 //////////////////////////////
 // @{form--styled}

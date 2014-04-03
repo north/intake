@@ -30,15 +30,18 @@
 
   &--title {
     @extend %base--h1;
+    @extend %base--header;
   }
 
   &--heading {
     @extend %base--h3;
+    @extend %base--header;
     line-height: 1.618em;
   }
 
   &--subtype {
     @extend %base--h4;
+    @extend %base--header;
   }
 
   &--section {
