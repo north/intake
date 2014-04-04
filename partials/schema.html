@@ -1,6 +1,6 @@
 <article class="_main--primary">
   <input type="search" ng-model="search" placeholder = "Search">
-  <a class="form--save" href="#/content-models/new">Add New Content Model</a>
+  <button class="form--save" ng-click="newContent()" ng-disabled="personas === undefined">Add New Content Model</button>
   <ul class="schemas">
     <li class="schemas--display" ng-repeat="schema in schemas | orderBy:'value'">
       <h2 class="role--role">{{schema.title}} <a class="form--view" href="#/content-models/view/{{schema.guid}}">View</a> <a class="form--edit" href="#/content-models/edit/{{schema.guid}}">Edit</a></h2>
@@ -9,4 +9,7 @@
     </li>
   </ul>
 </article>
-<aside schema-desc class="base--STYLED _main--secondary"></aside>
+<aside class="_main--secondary">
+  <span class="message--ERROR" ng-show="personas === undefined">Personas are needed in order to define value for content! <a href="#/personas/new">Go create some!</a></span>
+  <section schema-desc class="base--STYLED"></section>
+</aside>

@@ -40,6 +40,23 @@
   border: 2px solid $tertiary;
   margin-bottom: 1em;
   background: mix($white, $tertiary, 50%);
+
+  a {
+    @include underline(mix($white, $tertiary, 50%), $tertiary);
+  }
+}
+
+.message--STATUS {
+  display: block;
+  padding: $padding;
+  border-radius: $px * 5;
+  border: 2px solid $secondary;
+  margin-bottom: 1em;
+  background: mix($white, $secondary, 50%);
+
+  a {
+    @include underline(mix($white, $secondary, 50%), $secondary);
+  }
 }
 // {message--error}@
 //////////////////////////////

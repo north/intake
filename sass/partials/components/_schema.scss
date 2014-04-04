@@ -28,6 +28,7 @@
 
   &--benefit {
     @include clearfix;
+    margin-bottom: 1em;
   }
 
   &--title {
@@ -80,9 +81,16 @@
     }
   }
 
-  @include layout(100px 1, .5em, 'calc') {
+  @include layout(200px 1, .5em, 'calc') {
     &--benefit-description {
       @include grid-span(1, 2);
+      margin-bottom: 1em;
+
+      > h3:first-child {
+        @extend %base--header;
+        padding-top: 0;
+        margin-bottom: 0;
+      }
     }
 
     &--benefit-image {

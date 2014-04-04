@@ -111,9 +111,13 @@
   //////////////////////////////
   // Content Model Controllers;
   //////////////////////////////
-  intakeControllers.controller('IntakeContentModelCtrl', ['$scope', 'dataService', function ($scope, dataService) {
+  intakeControllers.controller('IntakeContentModelCtrl', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
       $scope.personas = dataService.get('personas');
       $scope.schemas = dataService.get('content-models');
+
+      $scope.newContent = function () {
+        $location.path('/content-models/new');
+      };
     }]);
 
   intakeControllers.controller('IntakeContentModelViewCtrl', ['$scope', '$sce', 'dataService', 'schemaService', function ($scope, $sce, dataService, schemaService) {
