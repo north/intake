@@ -83,12 +83,11 @@
 }
 
 %base--ol {
-  display: block;
-  list-style-type: decimal;
+  list-style: decimal;
 }
 
 %base--ul {
-  list-style-type: disc;
+  list-style: disc;
 }
 
 %base--li {
