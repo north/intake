@@ -45,7 +45,7 @@ GEM
     singularitygs (1.2.0)
       breakpoint (~> 2.4)
       sass (~> 3.3.0)
-    toolkit (2.1.0)
+    toolkit (2.2.0)
       sass (~> 3.3.0)
 
 PLATFORMS
@@ -59,4 +59,4 @@ DEPENDENCIES
   sass (~> 3.3.0)
   singularity-extras (~> 1.0.0.alpha.3)
   singularitygs (~> 1.2.0)
-  toolkit (~> 2.1.0)
+  toolkit (~> 2.2.0)
