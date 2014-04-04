@@ -3,31 +3,21 @@
     <div class="_columns--flow-item">
       <label>Role</label>
       <input type="text" tabindex="1" name="role" ng-model="item.role" required>
-      <span ng-show="rolesEdit.role.$error.required && !rolesEdit.role.$pristine">
-          Required {{rolesEdit.role.$pristine}}</span>
     </div>
 
     <div class="_columns--flow-item">
       <label>Name</label>
       <input type="text" tabindex="3" name="name" ng-model="item.name" required>
-      <span ng-show="rolesEdit.name.$error.required && !rolesEdit.name.$pristine">
-          Required {{rolesEdit.name.$pristine}}</span>
     </div>
 
     <div class="_columns--flow-item">
       <label>Email</label>
       <input type="email" tabindex="2" name="email" ng-model="item.email" required>
-      <span ng-show="rolesEdit.email.$error.required && !rolesEdit.email.$pristine">
-          Required {{rolesEdit.email.$pristine}}</span>
-          <span ng-show="rolesEdit.email.$error.email && !rolesEdit.email.$pristine">
-          Valid email required {{rolesEdit.email.$pristine}}</span>
     </div>
 
     <div class="_columns--flow-item">
       <label>Description</label>
       <input type="text" tabindex="4" name="description" ng-model="item.description" required>
-      <span ng-show="rolesEdit.description.$error.required && !rolesEdit.description.$pristine">
-          Required {{rolesEdit.description.$pristine}}</span>
     </div>
   </div>
 
@@ -38,4 +28,11 @@
   </div>
 
 </form>
-<aside roles-desc class="base--STYLED _main--secondary"></aside>
+<aside class="_main--secondary">
+  <span class="message--ERROR" ng-show="rolesEdit.role.$error.required && !rolesEdit.role.$pristine">Required {{rolesEdit.role.$pristine}}</span>
+  <span class="message--ERROR" ng-show="rolesEdit.name.$error.required && !rolesEdit.name.$pristine">Required {{rolesEdit.name.$pristine}}</span>
+  <span class="message--ERROR" ng-show="rolesEdit.email.$error.required && !rolesEdit.email.$pristine">Required {{rolesEdit.email.$pristine}}</span>
+  <span class="message--ERROR" ng-show="rolesEdit.email.$error.email && !rolesEdit.email.$pristine">Valid email required {{rolesEdit.email.$pristine}}</span>
+  <span class="message--ERROR" ng-show="rolesEdit.description.$error.required && !rolesEdit.description.$pristine">Required {{rolesEdit.description.$pristine}}</span>
+  <section roles-desc class="base--STYLED"></section>
+</aside>
