@@ -2,9 +2,9 @@
   <input type="search" ng-model="search" placeholder="Search">
   <a class="form--save" href="#/personas/new">Add Persona</a>
   <ul>
-    <li ng-repeat="persona in personas">
-      <img class="form--imagedrop" src="{{persona.image}}" alt="Headshot">
-      <span>
+    <li class="schema--benefit" ng-repeat="persona in personas">
+      <img class="schema--benefit-image" class="form--imagedrop" src="{{persona.image}}" alt="Headshot">
+      <span class="schema--benefit-description">
         <h3>{{persona.name}} <a class="form--view" href="#/personas/view/{{persona.guid}}">View</a> <a class="form--edit" href="#/personas/edit/{{persona.guid}}">Edit</a></h3>
         <p>{{persona.motivator}}</p>
       </span>

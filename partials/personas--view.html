@@ -1,16 +1,17 @@
-<article>
-  <h2>{{persona.name}} <a class="form--edit" href="#/personas/edit/{{persona.guid}}">Edit</a></h2>
-  <img class="form--imagedrop" src="{{persona.image}}" alt="Image of {{persona.name}}">
-  <section>
+<article class="schema--benefit _main--primary">
+  <h2 class="schema--title">{{persona.name}} <a class="form--edit" href="#/personas/edit/{{persona.guid}}">Edit</a></h2>
+  <img class="schema--benefit-image" src="{{persona.image}}" alt="Image of {{persona.name}}">
+  <section class="schema--benefit-description">
     <h3>Typical Usage</h3>
     <p>{{persona.uses}}</p>
   </section>
-  <section>
+  <section class="schema--benefit-description">
     <h3>Motivator for Use</h3>
     <p>{{persona.motivator}}</p>
   </section>
-  <section>
+  <section class="schema--benefit-description">
     <h3>Pain Points</h3>
     <p>{{persona.pains}}</p>
   </section>
 </article>
+<aside personas-desc class="base--STYLED _main--secondary"></aside>
