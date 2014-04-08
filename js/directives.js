@@ -1,4 +1,4 @@
-(function (angular, FileReaderJS) {
+(function (angular, FileReaderJS, Showdown) {
   'use strict';
 
   var intakeDirectives = angular.module('intakeDirectives', [
@@ -46,6 +46,23 @@
       templateUrl: 'partials/benefits.html'
     };
   });
+
+  //////////////////////////////
+  // Markdown
+  //////////////////////////////
+  intakeDirectives.directive('markdown', ['$compile', '$http', function ($compile, $http) {
+      var converter = new Showdown.converter({ extension: 'github' });
+
+      console.log(converter);
+
+      return {
+        restrict: 'E',
+        replace: true,
+        link: function (scope, element, attrs) {
+          element.html(converter.makeHtml(attrs.source));
+        }
+      };
+  }]);
 
   //////////////////////////////
   // Import
@@ -110,4 +127,4 @@
     };
   });
 
-})(window.angular, window.FileReaderJS);
+})(window.angular, window.FileReaderJS, window.Showdown);
