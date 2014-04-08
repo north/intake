@@ -43,7 +43,7 @@ body {
   }
 
   li {
-    @extend %base--ol;
+    @extend %base--li;
   }
   ol ul,
   ul ul {
