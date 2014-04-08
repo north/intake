@@ -85,6 +85,7 @@
     &--benefit-description {
       @include grid-span(1, 2);
       margin-bottom: 1em;
+      clear: right;
 
       > h3:first-child {
         @extend %base--header;
