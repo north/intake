@@ -2,7 +2,7 @@
   <input type="search" ng-model="search" placeholder="Search">
   <a class="form--save" href="#/roles/new">Add Role</a>
   <ul class="roles _columns">
-    <li class="role _columns--flow-item" ng-repeat="role in project.roles | filter:search | orderBy:'name'">
+    <li class="role schema--benefit _columns--flow-item" ng-repeat="role in project.roles | filter:search | orderBy:'name'">
       <span class="role--role">{{role.role}} <a href="#/roles/edit/{{role.guid}}" class="form--edit">Edit</a></span>
       <span class="role--name">{{role.name}} <a href="mailto:{{role.email}}" class="role--email">Email</a></span>
       <span class="role--description">{{role.description}}</span>
