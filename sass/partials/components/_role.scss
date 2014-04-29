@@ -38,6 +38,10 @@
 
   &--description {
     font-size: .85em;
+    padding: 0;
+    > p {
+      margin-top: 0;
+    }
   }
 
   &--email {

@@ -167,13 +167,20 @@
 
 }
 
-.ng-valid-required {
-  border-color: $secondary;
+input,
+textarea {
+  &.ng-valid-required {
+    border: 2px solid;
+    border-color: $secondary;
+  }
+
+  &.ng-invalid {
+    border: 2px solid;
+    border-color: $tertiary;
+  }
 }
 
-.ng-invalid {
-  border-color: $tertiary;
-}
+
 // {form--styled}@
 //////////////////////////////
 
