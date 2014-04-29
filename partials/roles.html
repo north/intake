@@ -1,0 +1,12 @@
+<article class="_main--primary">
+  <input type="search" ng-model="search" placeholder="Search">
+  <a class="form--save" href="#/roles/new">Add Role</a>
+  <ul class="roles _columns">
+    <li class="role schema--benefit _columns--flow-item" ng-repeat="role in project.roles | filter:search | orderBy:'name'">
+      <span class="role--role">{{role.role}} <a href="#/roles/edit/{{role.guid}}" class="form--edit">Edit</a></span>
+      <span class="role--name">{{role.name}} <a href="mailto:{{role.email}}" class="role--email">Email</a></span>
+      <markdown class="base--STYLED role--description" source="{{role.description}}"></markdown>
+    </li>
+  </ul>
+</article>
+<aside roles-desc class="base--STYLED _main--secondary"></aside>

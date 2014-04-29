@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="intakeApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Intake</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="js/intake.js"></script>
+</head>
+<body>
+  <header ng-controller="IntakeHeaderCtrl" class="banner">
+    <span class="banner--name">
+      <h1><a href="#/" class="wordmark"><span class="wordmark--1">I</span><span class="wordmark--2">n</span><span class="wordmark--3">t</span><span class="wordmark--4">a</span><span class="wordmark--6">k</span><span class="wordmark--7">e</span><span class="wordmark--8">.</span><span class="wordmark--9">C</span><span class="wordmark--10">e</span><span class="wordmark--11">n</span><span class="wordmark--12">t</span><span class="wordmark--13">e</span><span class="wordmark--14">r</span></a></h1>
+      <footer><span class="banner--companion">A Content Strategy companion to <a href="http://pointnorth.io" class="north">North</a></span></footer>
+    </span>
+
+    <div class="banner--wrapper">
+      <h3 class="banner--project">{{project.name || '&nbsp'}}</h3>
+      <div class="banner--actions">
+        <button ng-click="IntakeDownload()">Export</button>
+        <import></import>
+      </div>
+      <nav role="navigation" class="banner--nav">
+        <a class="banner--nav-item" href="#/roles">Roles</a>
+        <a class="banner--nav-item" href="#/vision">Vision</a>
+        <a class="banner--nav-item" href="#/personas">Personas</a>
+        <a class="banner--nav-item" href="#/content-models">Content Models</a>
+      </nav>
+    </div>
+  </header>
+  <main ng-view class="_main"></main>
+
+  <link rel="stylesheet" href="css/fonts.css"/>
+
+</body>
+</html>

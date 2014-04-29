@@ -1,0 +1,65 @@
+<form name="schemaEdit" class="_main--primary">
+  <h2 class="schema--heading" ng-show="type.label">New {{type.label}}</h2>
+  <h2 class="schema--heading" ng-hide="type.label">Edit {{schema.title}}</h2>
+  <h3 class="schema--subtype">{{stepName}}</h3>
+  <!-- Basic Information -->
+  <div ng-show="step === 'basic'">
+    Title:
+    <input type="text" ng-model="schema.title" placeholder="{{type.label}}">
+    Description:
+    <input type="text" ng-model="schema.description">
+  </div>
+
+  <div ng-show="step === 'value'">
+    <div class="_columns">
+      <label class="_columns--flow-item form--checkbox" ng-repeat="persona in personas | orderBy:'name'">
+        <input type="checkbox" ng-click="benefitClick(persona.guid)" id="benefits--{{persona.guid}}" ng-disabled="benefitsActive" checklist-model="selected.benefits" checklist-value="persona.guid"> {{persona.name}}
+      </label>
+    </div>
+  </div>
+
+  <!-- Attributes -->
+  <div ng-show="step === 'attributes'">
+    <input type="search" ng-model="search.attributes" placeholder="Search">
+    <div class="_columns">
+      <label class="_columns--flow-item form--checkbox" ng-repeat="property in properties.primary | filter:search.attributes | orderBy:'label'">
+        <input type="checkbox" ng-click="detailClick(property.id)" id="details--{{property.id}}" ng-disabled="detailsActive" checklist-model="selected.attributes" checklist-value="property.id"> {{property.label}}
+      </label>
+    </div>
+    <a href="#" class="form--expand" ng-click="expandAttrs($event)">All Attributes</a>
+    <div class="_columns--EXPAND">
+      <label class="_columns--flow-item form--checkbox" ng-repeat="property in properties.secondary | filter:search.attributes | orderBy:'label'">
+        <input type="checkbox" ng-click="detailClick(property.id)" id="details--{{property.id}}" ng-disabled="detailsActive" checklist-model="selected.attributes" checklist-value="property.id"> {{property.label}}
+      </label>
+    </div>
+
+  </div>
+
+  <!-- Details -->
+  <div ng-show="step === 'details'">
+    <h3>Details</h3>
+    <attributedetails ng-repeat="detail in schema.details">
+    </attributedetails>
+  </div>
+
+
+  <div>
+    <a class="form--cancel" href="#/content-models">Cancel</a>
+    <button class="form--cancel" ng-click="back()" ng-disabled="first || detailsActive || benefitsActive">Back</button>
+    <button class="form--save" ng-click="save()" ng-disabled="schemaEdit.$invalid || detailsActive || benefitsActive || (benefits.length === 0 && step === 'value') || (attributes.length === 0 && step === 'attributes')">{{button}}</button>
+    <button class="form--destroy" ng-click="destroy()" ng-show="remove">Delete</button>
+  </div>
+
+</form>
+
+<div class="_main--secondary">
+  <span class="message--STATUS" ng-show="benefits.length === 0 && step === 'value'">Content needs to be valuable to at least one persona. If it's not, <a href="#/personas/new">go create one!</a></span>
+
+  <span class="message--STATUS" ng-show="attributes.length === 0 && step === 'attributes'">Content needs to have at least one attribute.</span>
+
+
+
+  <benefits id="details--benefit" ng-show="benefitsActive" ng-controller="IntakeBenefitCtrl"></benefits>
+  <attributedetails id="details--attributes" ng-show="detailsActive" ng-controller="IntakeDetailCtrl"></attributedetails>
+  <section schema-desc class="base--STYLED"></section>
+</div>

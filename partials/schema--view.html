@@ -1,0 +1,42 @@
+<article class="schema _main--primary">
+  <section class="schema--section">
+    <h1 class="schema--title">{{schema.title}} <a class="form--edit" href="#/content-models/edit/{{schema.guid}}">Edit</a></h1>
+    <h4 class="schema--subtype">A type of <a href="#/content-models/new/{{schema.type}}">{{schema.type}}</a></h4>
+    <p class="schema--description">{{schema.description}}</p>
+  </section>
+  <section class="schema--section">
+    <h2 class="schema--heading">Benefits and Value</h2>
+    <ul>
+      <li class="schema--benefit" ng-repeat="persona in schema.benefits | orderBy:'value'">
+        <span class="schema--benefit-description">
+          <p class="base--STYLED">As <em>{{persona.name}}</em>, I want <em>{{persona.desire}}</em> so that <em>{{persona.rationale}}</em></p>
+          <p class="base--STYLED">Value to <em>{{persona.name}}</em>: <strong>{{persona.value}}</strong></p>
+        </span>
+        <span class="schema--benefit-image">
+          <img src="{{persona.image}}" alt="Image representation of {{persona.name}}">
+        </span>
+      </li>
+    </ul>
+    <p class="base--STYLED">Total Value: <strong>{{schema.value}}</strong></p>
+    <p class="base--STYLED">Valuable to <em>{{schema.benefits.length}}</em> personas of <em>{{personas.length}}</em> total personas</p>
+  </section>
+
+  <section class="schema--section">
+    <h2 class="schema--heading">Attributes</h2>
+    <ul>
+      <li class="schema--attribute" ng-repeat="attribute in schema.attributes | orderBy:'label'">
+        <strong class="schema--attribute-name">{{attribute.label}}</strong>
+        <p class="schema--attribute-description" ng-bind-html="attribute.description"></p>
+        <ul class="schema--details">
+          <li><em>Total</em>: {{attribute.total}}</li>
+          <li><em>Required</em>: {{attribute.required || false}}</li>
+          <li><em>Input Type</em>: {{attribute.datatype}}</li>
+          <li ng-show="attribute.formatting && attribute.formatting !== ''"><em>Formatting</em>: {{attribute.formatting}}</li>
+          <li><em>Input Limits</em>: {{attribute.limits}}</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+</article>
+<aside schema-desc class="base--STYLED _main--secondary"></aside>

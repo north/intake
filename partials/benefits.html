@@ -1,0 +1,19 @@
+<form name="benefit">
+  <p>
+    <span>As </span>
+    <em>{{name}}</em>
+    <span>, I want</span>
+    <input type="text" ng-model="benefit.desire" required>
+    <span> so that </span>
+    <input type="text" ng-model="benefit.rationale" required>
+  </p>
+  <p>
+    <span>Value to {{name}}: </span>
+    <select ng-model="benefit.value" required>
+      <option value="{{value}}" ng-repeat="value in fibonacci">{{value}}</option>
+    </select>
+  </p>
+
+  <button class="form--cancel" ng-click="benefitCancel(benefit.guid)">Cancel</button>
+  <button class="form--save" ng-click="benefitSave(benefit.guid)" ng-disabled="schemaEdit.$invalid">Save</button>
+</form>

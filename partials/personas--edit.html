@@ -1,0 +1,42 @@
+<form name="personaEdit" class="form--STYLED _main--primary">
+  <imagedrop></imagedrop>
+
+  <div class="form--floated">
+    <label>Name</label>
+    <input type="text" name="name" ng-model="item.name" required>
+  </div>
+
+  <div class="form--floated">
+    <label>Motivator for Use</label>
+    <textarea name="motivator" ng-model="item.motivator" required></textarea>
+  </div>
+
+  <div class="form--cleared">
+    <label>Typical Use</label>
+    <textarea type="text" name="uses" ng-model="item.uses" required></textarea>
+
+  </div>
+
+
+
+  <div>
+    <label>Pain Points</label>
+    <textarea name="pains" ng-model="item.pains" required></textarea>
+
+  </div>
+
+  <div>
+    <a class="form--cancel" href="#/personas">Cancel</a>
+    <button class="form--save" ng-click="save()" ng-disabled="personaEdit.$invalid">Save</button>
+    <button class="form--destroy" ng-click="destroy()" ng-show="remove">Delete</button>
+  </div>
+
+</form>
+
+<aside class="_main--secondary">
+  <span class="message--ERROR" ng-show="personaEdit.name.$error.required && !personaEdit.name.$pristine">Name field is <em>required</em></span>
+  <span class="message--ERROR" ng-show="personaEdit.uses.$error.required && !personaEdit.uses.$pristine">Typical use field is required</span>
+  <span class="message--ERROR" ng-show="personaEdit.motivator.$error.required && !personaEdit.motivator.$pristine">Motivator for use field is <em>required</em></span>
+  <span class="message--ERROR" ng-show="personaEdit.pains.$error.required && !personaEdit.pains.$pristine">Pain points field is <em>required</em></span>
+  <section personas-desc class="base--STYLED"></section>
+</aside>
