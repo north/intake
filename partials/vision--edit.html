@@ -1,8 +1,12 @@
 <article class="form--STYLED _main--primary">
-  <a class="form--save" href="#/vision/edit">Edit</a>
+  <a class="form--save" href="#/vision">View</a>
   <div class="form--row">
-    <markdown class="base--STYLED" source="{{project.vision}}"></markdown>
+    <label for="">Vision Statement</label>
+    <textarea ng-model="project.vision"></textarea>
+    <label for="">Notes</label>
+    <textarea ng-model="project.notes" cols="30" rows="10"></textarea>
   </div>
+
 </article>
 <aside class="base--STYLED _main--secondary">
   <h2>Vision Statement</h2>

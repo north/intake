@@ -47,6 +47,10 @@
       $scope.$watch('project.vision', function () {
         dataService.refresh();
       });
+
+      $scope.$watch('project.notes', function () {
+        dataService.refresh();
+      });
     }]);
 
   intakeControllers.controller('IntakePersonasCtrl', ['$scope', 'dataService', function ($scope, dataService) {

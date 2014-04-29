@@ -50,18 +50,16 @@
   //////////////////////////////
   // Markdown
   //////////////////////////////
-  intakeDirectives.directive('markdown', ['$compile', '$http', function ($compile, $http) {
-      var converter = new Showdown.converter({ extension: 'github' });
+  intakeDirectives.directive('markdown', [function () {
+    var converter = new Showdown.converter({ extension: 'github' });
 
-      console.log(converter);
-
-      return {
-        restrict: 'E',
-        replace: true,
-        link: function (scope, element, attrs) {
-          element.html(converter.makeHtml(attrs.source));
-        }
-      };
+    return {
+      restrict: 'E',
+      replace: true,
+      link: function (scope, element, attrs) {
+        element.html(converter.makeHtml(attrs.source));
+      }
+    };
   }]);
 
   //////////////////////////////

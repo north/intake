@@ -35,6 +35,10 @@
           templateUrl: 'partials/vision.html',
           controller: 'IntakeVisionCtrl'
         })
+        .when('/vision/edit', {
+          templateUrl: 'partials/vision--edit.html',
+          controller: 'IntakeVisionCtrl'
+        })
         .when('/content-models', {
           templateUrl: 'partials/schema.html',
           controller: 'IntakeContentModelCtrl'
