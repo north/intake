@@ -133,20 +133,29 @@
           return schema.types[$routeParams.type];
         },
         properties: function (type) {
-          var properties = [];
+          var properties = {};
+          properties.primary = [];
+          properties.secondary = [];
           type = type || schema.types[$routeParams.type];
 
           if (typeof(type) === 'string') {
             type = schema.types[type];
           }
 
-          angular.forEach(type.properties, function (v) {
-            if (schema.properties[v].comment.indexOf('legacy ') === -1) {
-              properties.push({
-                'label': schema.properties[v].label,
-                'desc': $sce.trustAsHtml(schema.properties[v].comment),
-                'id': schema.properties[v].id
-              });
+          angular.forEach(schema.properties, function (v, k) {
+            if (v.comment.indexOf('legacy ') === -1) {
+              var prop = {
+                'label': v.label,
+                'desc': $sce.trustAsHtml(v.comment),
+                'id': v.id
+              };
+
+              if (type.properties.indexOf(k) > -1) {
+                properties.primary.push(prop);
+              }
+              else {
+                properties.secondary.push(prop);
+              }
             }
           });
 

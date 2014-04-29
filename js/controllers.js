@@ -359,6 +359,8 @@
         $scope.datatypes = schemaService.datatypes();
         $scope.personas = dataService.get('personas');
 
+        // console.log($scope.properties);
+
         $scope.step = 'basic';
         $scope.stepName = 'Basic Info';
         $scope.button = 'Next';
@@ -367,6 +369,20 @@
         $scope.selected = {};
         $scope.benefits = [];
         $scope.attributes = [];
+
+        $scope.expandAttrs = function ($event) {
+          $event.preventDefault();
+          var expand = document.querySelector('._columns--EXPAND');
+
+          if (expand.getAttribute('data-state') === null) {
+            expand.setAttribute('data-state', 'expanded');
+            $event.target.setAttribute('data-state', 'open');
+          }
+          else {
+            expand.removeAttribute('data-state');
+            $event.target.removeAttribute('data-state');
+          }
+        }
 
         $scope.back = function () {
           switch ($scope.step) {
@@ -429,6 +445,20 @@
         $scope.selected = $scope.schema.selected;
         $scope.benefits = $scope.schema.benefits;
         $scope.attributes = $scope.schema.attributes;
+
+        $scope.expandAttrs = function ($event) {
+          $event.preventDefault();
+          var expand = document.querySelector('._columns--EXPAND');
+
+          if (expand.getAttribute('data-state') === null) {
+            expand.setAttribute('data-state', 'expanded');
+            $event.target.setAttribute('data-state', 'open');
+          }
+          else {
+            expand.removeAttribute('data-state');
+            $event.target.removeAttribute('data-state');
+          }
+        }
 
         $scope.back = function () {
           switch ($scope.step) {

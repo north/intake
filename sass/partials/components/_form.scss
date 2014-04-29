@@ -52,6 +52,26 @@
     }
   }
 
+  &--expand {
+    float: right;
+    text-transform: lowercase;
+    color: black;
+    text-decoration: none;
+    margin-top: .25em;
+
+    &:after {
+      content: '+';
+      color: $secondary;
+      margin-left: .25em;
+      width: .25em;
+      display: inline-block;
+    }
+
+    &[data-state="open"]:after {
+      content: '-';
+    }
+  }
+
   &--imagedrop {
     height: 200px;
     width: 200px;

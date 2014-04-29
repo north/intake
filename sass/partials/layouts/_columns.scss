@@ -31,6 +31,28 @@
   &--flow-item {
     @include break-inside(avoid)
   }
+
+  &--EXPAND {
+    @include breakpoint(692px) {
+      @include column-count(2);
+    }
+
+    clear: both;
+
+    max-height: 0;
+    overflow: hidden;
+    border-top: 1px solid rgba($black, .25);
+
+    margin-top: .5em;
+    margin-bottom: .5em;
+    padding: .25em;
+
+    @include single-transition(max-height .5s ease-in);
+
+    &[data-state="expanded"] {
+      max-height: 1000em;
+    }
+  }
 }
 // {columns}@
 //////////////////////////////

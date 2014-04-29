@@ -22,7 +22,13 @@
   <div ng-show="step === 'attributes'">
     <input type="search" ng-model="search.attributes" placeholder="Search">
     <div class="_columns">
-      <label class="_columns--flow-item form--checkbox" ng-repeat="property in properties | filter:search.attributes | orderBy:'label'">
+      <label class="_columns--flow-item form--checkbox" ng-repeat="property in properties.primary | filter:search.attributes | orderBy:'label'">
+        <input type="checkbox" ng-click="detailClick(property.id)" id="details--{{property.id}}" ng-disabled="detailsActive" checklist-model="selected.attributes" checklist-value="property.id"> {{property.label}}
+      </label>
+    </div>
+    <a href="#" class="form--expand" ng-click="expandAttrs($event)">All Attributes</a>
+    <div class="_columns--EXPAND">
+      <label class="_columns--flow-item form--checkbox" ng-repeat="property in properties.secondary | filter:search.attributes | orderBy:'label'">
         <input type="checkbox" ng-click="detailClick(property.id)" id="details--{{property.id}}" ng-disabled="detailsActive" checklist-model="selected.attributes" checklist-value="property.id"> {{property.label}}
       </label>
     </div>
