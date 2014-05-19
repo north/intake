@@ -7,24 +7,24 @@
 
     <div class="_columns--flow-item">
       <label>Name</label>
-      <input type="text" tabindex="3" name="name" ng-model="item.name" required>
+      <input type="text" tabindex="2" name="name" ng-model="item.name" required>
     </div>
 
     <div class="_columns--flow-item">
       <label>Email</label>
-      <input type="email" tabindex="2" name="email" ng-model="item.email" required>
+      <input type="email" tabindex="3" name="email" ng-model="item.email" required>
     </div>
 
     <div class="_columns--flow-item">
       <label>Responsibilities</label>
-      <textarea name="description" ng-model="item.description" required></textarea>
+      <textarea tabindex="4" name="description" ng-model="item.description" required></textarea>
     </div>
   </div>
 
   <div class="_main--half">
     <a href="#/roles" tabindex="5" class="form--cancel">Cancel</a>
-    <button class="form--save" tabindex="6" ng-click="save()" ng-disabled="rolesEdit.$invalid">Save</button>
-    <button class="form--destroy" tabindex="7" ng-click="destroy()" ng-show="remove">Delete</button>
+    <button class="form--save" tabindex="5" ng-click="save()" ng-disabled="rolesEdit.$invalid">Save</button>
+    <button class="form--destroy" tabindex="6" ng-click="destroy()" ng-show="remove">Delete</button>
   </div>
 
 </form>
